@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 150px;
+				height: 150px;
+				border: 1px solid red;
+			}
+			#b3Div{
+				background-color: red;
+			}
+		</style>
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#b1").click(function(){
+					//$("#b1Div").hide(2000);
+					$("#b1Div").toggle(3000);
+				})/*.click(function(){
+					$("#b1Div").show(3000);
+				});*/
+				$("#b2").click(function(){
+					$("#b2Div").slideDown(3000);
+				}).click(function(){
+					$("#b2Div").slideUp(3000);
+				})
+				$("#b3").click(function(){
+					$("#b3Div").fadeIn(4000);
+				}).click(function(){
+					$("#b3Div").fadeOut(3000);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<input type="button" id="b1" value="显示/隐藏 b1Div" />
+		<div id="b1Div"></div> <br/>
+		<input type="button" id="b2" value="滑出/滑入b2Div"/>
+		<div id="b2Div"></div> <br/>
+		<input type="button" id="b3" value="淡出/淡入b3Div" />
+		<div id="b3Div"></div>
+	</body>
+</html>

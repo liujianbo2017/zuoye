@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//创建二维数组,初始化数据
+			var cities = new Array(5);
+			cities[0]= new Array("昌平区","海淀区");
+			cities[1]= new Array("通辽市","呼和浩特");
+			cities[2]= new Array("大连市","沈阳市","锦州市");
+			cities[3]= new Array("河间市","保定市");
+			cities[4]= new Array("武汉市","黄石市");
+			function selectCity(obj){
+				var provincenValue=obj.value;
+				var cityArray=cities[provincenValue];
+				var citySelect=document.getElementById("cityId");
+				citySelect.innerHTML="<option>---请选择市---</option>";
+				for(var i=0; i<cityArray.length;i++){
+					cityName=cityArray[i];
+					var option="<option>"+cityName+"</option>";
+					citySelect.innerHTML+=option;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<select id="provincenId" onchange="selectCity(this)" style="width: 150px;">
+			<option value="">---请选择省份---</option>
+			<option value="0">北京市</option>
+			<option value="1">内蒙古</option>
+			<option value="2">辽宁省</option>
+			<option value="3">河北省</option>
+			<option value="4">湖北省</option>
+		</select>
+		<select id="cityId" style="width: 150px;">
+			<option>---请选择市---</option>
+		</select>
+	</body>
+</html>

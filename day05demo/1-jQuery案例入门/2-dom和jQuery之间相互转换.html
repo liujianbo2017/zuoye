@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+	<body>
+		<input type="text" id="username" value="jack" />
+		<input type="text" id="password" value="123456" />
+	</body>
+	<script type="text/javascript">
+			//dom--->jQuery 第一种
+			var usernaem_dom=document.getElementById("username");
+			var username_jquery = $(usernaem_dom);
+			alert(username_jquery.val());
+			//jQuery--->dom
+			var username_jquery=$("#username");
+			var password_jquery=$("#password");
+			//第一种
+			var username_dom=username_jquery[0];
+			alert(username_dom.value)
+			//第二种
+			var password_dom=password_jquery.get(0);
+  		   // alert(password_dom.value);
+		</script>
+</html>

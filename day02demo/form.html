@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<input type="hidden" name="id" value="008" />
+			用户名:<input type="text" name="id" value="007"/><br />
+			密码:<input type="password" name="password" value="123" /><br />
+			性别:<input type="radio" name="gender" checked="checked" value="1"/>男
+				<input type="radio" name="gender" checked="checked" value="0" />女<br />
+			爱好:<input type="checkbox" name="hobby" checked="checked" value="看书" />看书
+				<input type="checkbox" name="hobby" checked="checked" value="玩游戏"/>玩游戏
+				<input type="checkbox" name="hobby" checked="checked" value="吃" />吃<br />
+			头像:<input type="file" name="avater" /><br />
+			省份:<select name="province">
+				<option>---请选择---</option>
+				<option>河北省</option>
+				<option>四川省</option>
+				<option>内蒙古</option>
+			</select>
+			城市:<select>
+				<option>---请选择---</option>
+				<option>保定</option>
+				<option>成都</option>
+				<option>通辽</option>
+			</select><br />
+			简介:<textarea cols="30" rows="20" name="desc">我爱白胜美</textarea><br />
+			普通按钮:<input type="button" name="普通按钮"/>
+			提交按钮:<input type="submit" name="提交按钮"/>
+			重置按钮:<input type="reset" name="重置按钮" />
+		</form>
+	</body>
+</html>
+<!--
+	表单标签
+	  <form></form>
+	           属性:
+	            action:
+	                                                  指的提交的路径
+	            method:
+	                   get:
+	                                                               默认  参数跟在?参数名=参数值
+	                                                                  大小有限制     1kb
+	                                                                  不怎么安全
+	                    post:
+	                                                             大小无限制  参数不再回地址栏显示,参数在请求提
+	                                                             相对安全
+	           子标签:
+	        input  输入框标签
+	           type(10)
+	                text:默认
+	                password:密码框
+	                radio:单选框
+	                checkbox:多选框
+	                
+	                file:上传文件
+	                
+	                button:普通按钮
+	                submit:提交按钮
+	                reset:重置按钮
+	                
+	                image:了解中了解  替代submit
+	                
+	                hidden:隐藏域
+	        select: 下拉选择框
+                   option
+            textarea:文本域
+                     cols:列数
+                     rows:行数
+                     
+        通用属性之name属性
+        1.给radio  checkbox  分组
+        2.你想要提交对应这个输入框中数据  必须给它一个name属性,必须赋值
+         通用属性值value属性:
+        1.给按钮类起名
+        2.如果你想要提交radio  checkbox  select 值  是你想要的值,设置value属性,必须赋值
+        
+    这种默认值:
+    1.text  password  hidden  给其一个value属相并且赋值
+    2.radio  checkbox 给其一个checked属性  checked="checked"
+    3.select  需要给字标签 设置selected属性  selected="selected"
+    4.textarea 只需要在标签体内写内容
+    
+  当即submit发生了表单提交事件  地址栏发生变化
+  
+ -->

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//方式一
+			//setInterval(test1,2000);
+			function test1(){
+				alert("创建方式一");
+			}
+			//方式二
+			//setInterval("test2(2)",2000)
+			function test2(i){
+				alert("创建方式二"+i);
+			}
+			setInterval (function(){
+				alert("创建方式三");
+			},2000);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
+<!--
+	定时器
+	1.setInterval(函数名,延迟的毫秒值);
+	2.setInterval("函数名(实参列表)",延迟的毫秒值);
+	3.setInterval(function(){
+		js代码块
+	},延迟的毫秒值);
+-->

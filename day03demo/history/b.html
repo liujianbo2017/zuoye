@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script>
+		function backA(){
+			history.back();
+		}
+		function goA(){
+			history.go(-1);
+		}
+	</script>
+	<body>
+		我是b页面<br />
+		<a href="c.html">到c页面</a>
+		<input type="button" value="后退back" onclick="backA()" >
+		<input type="button" value="后退go" onclick="goA()"  >
+	</body>
+</html>

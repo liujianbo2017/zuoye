@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//第一种方法
+			function add(){
+				alert("方式一");
+			}
+			function add2(a,b){
+				alert(a+b);
+			}
+			var res = add2(3,4);
+			add();
+			alert(res);
+			//方式二
+			var f=function(){
+				alert("方式二");
+			}
+			f();
+			var f2=function(a,b){
+				alert(a*b)
+			}
+			f2(2,3);
+			var f3=function(a,b){
+				return a*b;
+			}
+			alert(f3(3,4));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
+<!--
+	函数
+	   函数声明
+	   1.function 函数名(形参列表){
+	   	        js代码块
+	   }
+	   2.匿名函数
+	      var  f=function(形参列表){
+	      	js代码块
+	      }
+      注意:
+      函数调用:函数名(实参列表)
+   函数声明中  不需要指明参数类型
+   如果你需要函数返回值  只需要函数体中用return关键字将结果返回即可
+   
+-->

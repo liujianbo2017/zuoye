@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			function dianji(){
+				alert("试试就试试");
+			}
+			onload=function(){
+				var divobj=document.getElementById("div");
+				divobj.onclick=function(){
+					alert("试试就试试2");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="点我试试" onclick="dianji()" /><br />
+		<input type="button" value="点我试试2" id="div" />
+	</body>
+</html>
+<!--
+	事件  
+	  onclick  单击
+	  onload事件  页面加载成功事件
+	  onsubmit: 表单提交
+	      绑定事件
+	       1.事件属性名方式
+	       <xxx  onclick="函数()"/>
+	       2.事件派发机制
+	                      元素.事件名=function(){
+	                      	
+            }
+	         document.getElemenetById("x")//返回标签的id属性 值为x的一个标签
+-->

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#div03{
+				background-color: #0000FF;
+			}
+			#div01,#div02{
+				background-color: red;
+			}
+			.y{
+				background-color: blue;
+			}
+			span[xyz='w']{
+				background-color: darkcyan;
+			}
+			#div03 span{
+				background-color: darkmagenta;
+			}
+			a:link {color: #FF0000}	/* 未访问的链接 */
+			a:visited {color: #00FF00}	/* 已访问的链接 */
+			a:hover {color: #FF00FF}	/* 鼠标移动到链接上 */
+			a:active {color: #0000FF}	/* 选定的链接 */
+		</style>
+	</head>
+	<body>
+		<div id="div01">传智播客id选择器</div>
+		<div class="y" id="div03">传智播客</div>
+		<span>黑马程序员</span><span>黑马程序员</span><span>黑马程序员</span>
+		<hr
+			<span xyz="w">博学谷</span>
+			<span xyz="w">博学谷</span>
+			<span xyz="w">博学谷</span>
+			<hr />
+			<a href="#">点我试试</a>
+			<hr />
+			<div id="div03">
+				<span>落花流水</span>
+				<span>落花流水</span>
+				<span>落花流水</span>
+				<div>
+					<span>伯牙子期</span>
+				</div>
+				<div>
+					<div>
+						<span>哈哈哈</span>
+					</div>
+				</div>
+				<div>
+					你好啊 我是div
+				</div>
+			</div>
+	</body>
+</html>
+<!--
+	选择器有优先级
+	越特殊越高
+	id选择器
+	class选择器 
+	 属性选择器
+           元素选择器
+-->

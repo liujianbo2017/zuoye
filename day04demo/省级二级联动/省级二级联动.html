@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//创建二维数组,初始化数据
+			var cities = new Array(5);
+			cities[0]= new Array("昌平区","海淀区");
+			cities[1]= new Array("通辽市","呼和浩特");
+			cities[2]= new Array("大连市","沈阳市","锦州市");
+			cities[3]= new Array("河间市","保定市");
+			cities[4]= new Array("武汉市","黄石市");
+			//通过所选择的省份,显示包括的市
+			function selectCity(index){
+				//通过索引获得市
+				var allCity = cities[index];
+				//获取city select对象
+				var cityObj=document.getElementById("cityId");
+				cityObj.innerHTML="<option value=''>---请选择市---</option>"
+				//遍历所有的市
+				for(var i=0; i<allCity.length;i++){
+					//获取集体的市
+					var cityName=allCity[i];
+					var option = "<option>"+cityName+"</option>"
+					cityObj.innerHTML+=option;
+					/*//创建元素节点
+					var optionObj=document.createElement("option");
+					//创建文件节点
+					var textNode = document.createTextNode(cityName);
+					//将文件添加到optionbjO中
+					optionObj.appendChild(textNode);
+					//将optionObj追加到select中
+					cityObj.appendChild(optionObj);*/
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<select id="provincenId" onchange="selectCity(this.value)" style="width: 150px;">
+			<option value="">---请选择省份---</option>
+			<option value="0">北京市</option>
+			<option value="1">内蒙古</option>
+			<option value="2">辽宁省</option>
+			<option value="3">河北省</option>
+			<option value="4">湖北省</option>
+		</select>
+		<select id="cityId" style="width: 150px;">
+			<option>---请选择市---</option>
+		</select>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	
+	<body>
+		我是a页面<br />
+		<a href="b.html">b.html</a>
+		<input type="button" value="前进forward" onclick="forwardB()" />
+		<input type="button" value="前进go" onclick="goB()" />
+		<input type="button" value="前进go两步" onclick="goC()" />
+	</body>
+	<script>
+		function forwardB(){
+			
+			history.forward();
+		}
+		function goB(){
+			history.go(1);
+		}
+		function goC(){
+			history.go(2);
+		}
+	</script>
+</html>

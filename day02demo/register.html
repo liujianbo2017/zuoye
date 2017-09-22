@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--通用样式-->
+		<style>
+			div{
+				text-align: center;
+				font-size: 15px;
+			}
+			a{
+				text-decoration: none;
+			}
+			.logo div{
+				float: left;
+				width: 33.33%;
+			}
+			.meun{
+				text-align: left;
+				padding-left: 25px;
+				background-color: black;
+				height: 50px;
+				padding-top: 13px;
+				border-radius: 10px;
+				box-sizing: border-box;
+			}
+			.meun a{
+				color: white;
+				margin-right: 20px;
+			} 
+			li{
+				display:inline;
+			
+			}
+			.contend{
+				background-image: url(img/regist_bg.jpg);
+				height: 600px;
+				padding-top: 50px;
+			}
+			#div01{
+				border: 5px solid #ccc;
+				background-color: white;
+				height: 400px;
+				width: 800px;
+				margin: 0px auto;
+				padding-top: 100px;
+			}
+			.left{
+				width: 20%;
+				text-align: right;
+				font-weight: bold;
+			}
+			.right{
+				text-align: left;
+			}
+			table{
+				border-collapse: separate;
+				border-spacing: 0px 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--一个大的div嵌套五个小的div-->
+		<div>
+			<!--logo部分嵌套三个div浮动,清除浮动-->
+			<div class="logo">
+				<div style="text-align: left; padding-left: 20px; box-sizing: border-box;">
+					<img src="img/logo2.png" />
+				</div>
+				<div>
+					<img src="img/header.jpg" />
+				</div>
+				<div style="padding-top: 20px;">
+					<a href="#">登录</a>
+					<a href="#">注册</a>
+					<a href="#">购物车</a>
+				</div>
+			</div>
+			<!--清除浮动-->
+			<div style="clear:both;"></div>
+			<!--菜单部分放置几个超链接-->
+			<div class="meun">
+				<a href="#">首页</a>
+				<a href="#">手机数码</a>
+				<a href="#">电脑办公</a>
+				<a href="#">电脑办公</a>
+				<a href="#">电脑办公</a>
+				<a href="#">电脑办公</a>
+			</div>
+			<div style="background-color: white; height: 20px;"></div>
+			<!--主要内容,嵌套一个div-->
+			<div class="contend">
+				<div id="div01">
+					<form>
+						<table width="100%">
+							<tr>
+								<td colspan="2" style="text-align: left;padding-left: 90px;" >
+									会员注册USER REGISTER
+								</td>
+							</tr>
+							<tr>
+								<td class="left">用户名:</td>
+								<td class="right">
+									<input type="text" name="username" value="tom"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="left">密码:</td>
+								<td class="right">
+									<input type="password" name="password" value="123"/>
+								</td>
+							</tr>
+							<tr>
+								<td class="left">email:</td>
+								<td class="right">
+									<input type="text" name="email"value="123@123"/>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="submit" value="注册" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div style="background-color: white; height: 50px;"></div>
+			<!--正品保障,放置一张照片-->
+			<div>
+				<img src="img/footer.jpg" width="100%"/>
+			</div>
+			<!--版权声明,嵌套两个div-->
+			<div>
+				<div>
+					<ul style="padding-left:0px;">
+						<li>友情链接</li>
+						<li>友情链接</li>
+						<li>友情链接</li>
+						<li>友情链接</li>
+						<li>友情链接</li>
+						<li>友情链接</li>
+					</ul>
+				</div>
+				<div>
+					Copyright © 2005-2016 传智商城 版权所有
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

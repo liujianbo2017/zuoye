@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#e02,#e022{
+				border: 1px solid red;
+				height: 100px;
+				width: 100px;
+			}
+		</style>
+		<script>
+			//页面加载事件: 当整个html页面加载成功调用
+				//文本框事件
+				function focus1(){
+					var e01 = document.getElementById("textMsg");
+					e01.innerHTML="文本框获得焦点";
+				}
+				function blur1(){
+					var e01 = document.getElementById("textMsg");
+				    e01.innerHTML="文本框失去焦点";
+				}
+
+		</script>
+	</head>
+	<body>
+		<input id="e01" type="text"  onfocus="focus1()" onblur="blur1()"/><span id="textMsg"></span>
+	</body>
+</html>

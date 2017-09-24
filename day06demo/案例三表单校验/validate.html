@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.error{
+				color:red;
+			}
+		</style>
+		<script src="../js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--validate校验库-->
+		<script type="text/javascript" src="../js/jquery.validate.js" ></script>
+		<!--国际化库，中文提示-->
+		<script type="text/javascript" src="../js/messages_zh.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#formId").validate({
+						rules:{
+							username:"required",
+							password:{
+								required:true,
+								number:true
+							},
+							digits1:{
+								required:true,
+								digits:true
+							},
+							repassword:{
+								required:true,
+								equalTo:"[name='password']"
+							},
+							zuixiaozhi:{
+								min:5
+							},
+							shuzhiqujian:{
+								range:[3,9]
+							},
+							card:{
+								cardLength:false
+							}
+						},
+						messages:{
+							username:"用户名必须填写111",
+							password:{
+								required:"密码不可为空",
+								number:"密码必须为数值类型"
+							},
+							digits1:{
+								required:'必须填写',
+								digits:"必须为整形"
+							},
+							repassword:{
+								required:"必填",
+								equalTo:"密码不一致"
+							},
+							zuixiaozhi:{
+								min:"最小为5"
+							},
+							shuzhiqujian:{
+								range:"必须在{0}~{1}"
+							}
+						}
+				});
+				
+				$.validator.addMethod("cardLength",function(value,ele,params){
+					if(!(value.length==15||value.length==18)){
+						return false;
+					}
+					return true;
+				},"身份证长度必须是15或者18位");
+			})
+		</script>
+	</head>
+	<body> 
+		<form id="formId" action="">
+			必填：<input type="text" name="username"/> <br/>
+			必填数字：<input type="text" name="password"/> <br />
+			必填整数：<input type="text" name="digits1"/> <br />
+			必填重复：<input type="text" name="repassword"/> <br />
+			最小值：<input type="text" name="zuixiaozhi"/> <br />
+			区间：<input type="text" name="shuzhiqujian"/> <br />
+			身份证：<input type="text" name="card"/> <br />
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+</html>

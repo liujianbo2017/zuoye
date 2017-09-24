@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<script src="../js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//步骤分析
+		/*
+		 * 页面加载成功
+		 * 
+		 * //将所有的a标签隐藏 
+		 * 
+		 * 给span派发点击事件
+		 * 
+		 * 获取弟弟们 让她们toggle起来
+		 * 
+		 */
+		$(function(){
+			//将所有的a标签隐藏
+			$("a").hide();
+			//给span派发点击事件
+			$("span").click(function(){
+				$(this).nextAll().toggle();
+				/*if($(this).nextAll().is(":hidden")){
+					$(this).nextAll().show();
+				}else{
+					$(this).nextAll().hide();
+				}*/
+			})
+		})
+	</script>
+	
+	<style type="text/css">
+		div *{
+			display:block;
+			width:200px;
+		}
+		div span{
+			background-color : #0f0;
+		}
+	</style>
+</head>
+<body>
+		<div>
+			<span>完美世界</span>
+			<a href="#">石昊</a>
+			<a href="#">火灵儿</a>
+			<a href="#">辰东</a>
+		</div>
+		<div>
+			<span>大主宰</span>
+			<a>牧尘</a>
+			<a>番茄</a>
+			<a>女神</a>
+		</div>
+		<div>
+			<span>雪鹰领主</span>
+			<a>行者武松</a>
+			<a>豹子头</a>
+			<a>急先锋</a>
+		</div>
+</body>
+</html>

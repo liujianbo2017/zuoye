@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var city=$("#city")
+				var fk = $("#fk")
+				//把反恐添加到城市的后面
+				//city.append(fk);
+				//fk.appendTo(city);
+				//把反恐添加到城市的前面
+				//city.prepend(fk);
+				fk.prependTo(city);
+			})
+		</script>
+	</head>
+	<body>
+		 <ul id="city">
+		 	 <li id="bj" name="beijing">北京</li>
+			 <li id="tj" name="tianjin">天津</li>
+			 <li id="cq" name="chongqing">重庆</li>
+			 
+		 </ul>
+		 
+		 
+		  <ul id="love">
+		 	 <li id="fk" name="fankong">反恐</li>
+			 <li id="xj" name="xingji">星际</li>
+		 </ul>
+		
+		<div id="foo1">Hello1</div> 
+	</body>
+</html>

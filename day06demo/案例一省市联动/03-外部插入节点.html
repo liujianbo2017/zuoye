@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	    <script>
+	    	$(function(){
+	    		var city=$("#city");
+	    		var p2 = $("#p2");
+	    		//1.在 p2 的后面插入 city
+	    		//p2.after(city);
+	    		//city.insertAfter(p2);
+	    		//2.在 p2 的前面插入 city
+	    		p2.before(city);
+	    		city.insertBefore(p2);
+	    	})
+	    </script>
+	</head>
+	<body>
+		 <ul id="city">
+		 	 <li id="bj" name="beijing">北京</li>
+			 <li id="tj" name="tianjin">天津</li>
+			 <li id="cq" name="chongqing">重庆</li>
+		 </ul>
+		
+		 <p  id="p3">I would like to say: p3</p>
+		 
+		 <p  id="p2">I would like to say: p2</p>
+		
+		 <p  id="p1">I would like to say: p1</p>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+package it.cast.cn.day37.demo04.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import it.cast.cn.day37.demo04.service.UserService;
+
+public class Login2Servlet extends HttpServlet{
+	private UserService userService = new UserService();
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		String checkCode1 = req.getParameter("checkCode");
+		//从Session域中取得生成的验证码
+		String checkCode2 = (String)req.getSession().getAttribute("chechCode");
+		//比对用户输入的和Session域中保存的验证码是 否一致
+		String msg;
+		if(checkCode2.equals(checkCode1)){
+			//处理请求，调用业务逻辑，进行登录验证
+			boolean flag = userService.login
+		}
+	}
+	
+
+}

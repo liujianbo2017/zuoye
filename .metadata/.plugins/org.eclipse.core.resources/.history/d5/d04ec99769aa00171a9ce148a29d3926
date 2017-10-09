@@ -1,0 +1,7 @@
+package it.cast.cn.day37.demo01;
+
+import javax.servlet.http.HttpServlet;
+
+public class TestWriteCookieServlet extends HttpServlet {
+
+}

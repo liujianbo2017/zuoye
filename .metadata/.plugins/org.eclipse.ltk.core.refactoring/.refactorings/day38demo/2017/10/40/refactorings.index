@@ -1,0 +1,16 @@
+1507361818572	Rename resource 'demo02.jsp'
+1507363576263	Rename resource 'demo1.jsp'
+1507366680584	Rename resource 'test.jsp'
+1507370572071	Delete element
+1507371615701	Delete element
+1507376384193	Rename package 'cn.itcast.day38.demo07.daoimpl'
+1507376475410	Copy compilation unit
+1507376479483	Copy compilation unit
+1507376576923	Rename type 'ProductDaoImpl'
+1507377102251	Rename package 'cn.itcast.day38.demo07.dao.impl'
+1507377128062	Move compilation unit
+1507377144246	Rename package 'cn.itcast.day38.demo07.service.impl'
+1507377180549	Delete element
+1507377339051	Delete element
+1507377578944	Rename package 'cn.itcast.day38.demo07.service.impl'
+1507377596176	Move compilation unit

@@ -1,0 +1,16 @@
+package cn.itcast.day39.demo01.dao.impl;
+
+import java.util.List;
+
+import cn.itcast.day39.demo01.dao.ProductDao;
+import cn.itcast.day39.demo01.domain.Product;
+
+public class ProductDaoImpl implements ProductDao {
+
+	@Override
+	public List<Product> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

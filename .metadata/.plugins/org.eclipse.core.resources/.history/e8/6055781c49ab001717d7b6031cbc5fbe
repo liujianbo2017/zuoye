@@ -1,0 +1,13 @@
+<!-- C3P0的基本配置 -->
+<c3p0-config>
+  <default-config>
+    <property name="driverClass">com.mysql.jdbc.Driver</property>
+    <property name="jdbcUrl">jdbc:mysql://localhost:3306/day34</property>
+    <property name="root">itcast</property>
+    <property name="root">itcast</property>
+
+  </default-config>
+  
+
+
+</c3p0-config>

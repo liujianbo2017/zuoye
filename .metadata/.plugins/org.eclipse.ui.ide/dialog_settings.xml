@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="160" key="DIALOG_Y_ORIGIN"/>
+		<item value="379" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\学习\就业班讲课视频及代码\day39"/>
+			<item value="D:\demo"/>
+			<item value="D:\学习\就业班讲课视频及代码\day36"/>
+			<item value="D:\学习\就业班讲课视频及代码\day38"/>
+			<item value="D:\学习\就业班讲课视频及代码\day37"/>
+			<item value="D:\学习\就业班讲课视频及代码\day33"/>
+			<item value="D:\jianbo\day33demo"/>
+			<item value="D:\学习\就业班讲课视频及代码\day33\代码"/>
+			<item value="D:\学习\就业班讲课视频及代码\day23\day23"/>
+			<item value="D:\学习\develop\day06demo"/>
+			<item value="D:\学习\就业班讲课视频及代码\day22"/>
+			<item value="D:\学习\就业班讲课视频及代码\day21\day21"/>
+			<item value="D:\学习\develop\day20demo"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="8" key="DIALOG_Y_ORIGIN"/>
+		<item value="429" key="DIALOG_X_ORIGIN"/>
+		<item value="598" key="DIALOG_HEIGHT"/>
+		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="true" key="BUILD_NOW"/>
+		<item value="60" key="DIALOG_Y_ORIGIN"/>
+		<item value="true" key="BUILD_ALL"/>
+		<item value="433" key="DIALOG_X_ORIGIN"/>
+		<item value="456" key="DIALOG_HEIGHT"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
+	</section>
+</section>

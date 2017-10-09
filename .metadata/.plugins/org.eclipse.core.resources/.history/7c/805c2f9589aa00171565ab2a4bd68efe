@@ -1,0 +1,68 @@
+package it.cast.cn.day37.demo03.servlet;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import it.cast.cn.day37.demo03.service.UserService;
+
+public class Login1Servlet extends HttpServlet {
+	private UserService userService = new UserService();
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
+		// 接收请求,得到提交的用户名和密码
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		// 处理请求
+		boolean flag = userService.login(username, password);
+		resp.setContentType("text/html; charset=UTF-8");
+		String msg = "";
+		if (flag) {
+			// 成功
+			// 取得所有的Cookie
+			Cookie[] cookies = req.getCookies();
+			String t = "";// 必须初始值为空字符串,不能为null
+			if (cookies != null) {
+				// 遍历
+				for (Cookie cookie : cookies) {
+					if ("lastLoginTime".equals(cookie.getName())) {
+						// 取得值
+						t = "上次登录的时间为:" + cookie.getValue();
+					}
+				}
+			}
+			msg = "登录成功" + t;
+			// 向Cookie中写入当前时间
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			// 创建Cookie对象，并保存名为lastLoginTime，值为当前时间字符串
+			Cookie cookie = new Cookie("lastLoginTime", sdf.format(date));
+			// 设置有限期为一个月
+			cookie.setMaxAge(30 * 24 * 60 * 60);
+			// 写入浏览器
+			resp.addCookie(cookie);
+		} else {
+			//失败
+			msg = "登录失败!";
+		}
+		// 跳转页面
+		resp.setContentType("text/html; charset=UTF-8");
+		req.setAttribute("msg", msg);
+		req.getRequestDispatcher("/demo03/info.jsp").forward(req, resp);
+	}
+
+}

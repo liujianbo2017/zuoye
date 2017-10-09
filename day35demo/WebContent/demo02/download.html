@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 直接使用超链接下载时，只对浏览器不认识的文件 类型有效，
+		因为对于浏览器认识的文件，直接打开，不会下载
+	 -->
+	<h2>超链接下载</h2>
+	<a href="/day35demo/download/test.txt">文本文件</a><br/>
+	<a href="/day35/download/billgates.jpeg">图片文件</a><br/>
+	<a href="/day35demo/download/mysql.jar">Jar包</a><br/>
+	
+	<!-- 点击超链接时发送请求到DownloadServlet，并提交要下载的文件名 -->
+	<h2>Servlet下载</h2>
+	<a href="/day35demo/download.servlet?filename=test.txt">文本文件</a><br/>
+	<a href="/day35demo/download.servlet?filename=比尔盖茨.jpeg">图片文件</a><br/>
+	<a href="/day35demo/download.servlet?filename=mysql.jar">Jar包</a><br/>
+</body>
+</html>

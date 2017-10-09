@@ -1,0 +1,5 @@
+package cn.itcast.day38.demo07.service.impl;
+
+public interface ProductService {
+
+}

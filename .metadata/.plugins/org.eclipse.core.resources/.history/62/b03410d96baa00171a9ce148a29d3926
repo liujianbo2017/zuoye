@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>day37demo</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 测试写入Cookie的Servlet -->
+  <servlet>
+  		<servlet-name>testWriteCookie</servlet-name>
+  		<servlet-class>it.cast.cn.day37.demo01.TestWriteCookieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>testWriteServlet</servlet-name>
+  		<url-pattern>/testWriteCookie.Servlet</url-pattern>
+  </servlet-mapping>
+  <!-- 测试读取Cookie的Servlet -->
+  <servlet>
+  		<servlet-name>testReadServlet</servlet-name>
+  		<servlet-class>it.cast.cn.day37.demo01.TestReadCookieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>testReadServlet</servlet-name>
+  		<url-pattern>/testReadCookie.Servlet</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

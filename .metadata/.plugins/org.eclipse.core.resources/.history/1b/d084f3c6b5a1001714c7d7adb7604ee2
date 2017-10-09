@@ -1,0 +1,51 @@
+package cn.itcast.day33.demo01;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class <?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<display-name>day33</display-name>
+<welcome-file-list>
+  <welcome-file>index.html</welcome-file>
+  <welcome-file>index.htm</welcome-file>
+  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>default.html</welcome-file>
+  <welcome-file>default.htm</welcome-file>
+  <welcome-file>default.jsp</welcome-file>
+</welcome-file-list>
+<servlet>
+  <servlet-name>hello</servlet-name>
+  <servlet-class>cn.itcast.day33.demo1.HelloServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>hello</servlet-name>
+  <url-pattern>/hello.servlet</url-pattern>
+</servlet-mapping>
+<servlet>
+  <description></description>
+  <display-name>ServletDemo</display-name>
+  <servlet-name>ServletDemo</servlet-name>
+  <servlet-class>cn.itcast.day33.demo1.ServletDemo</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>ServletDemo</servlet-name>
+  <url-pattern>/ServletDemo</url-pattern>
+</servlet-mapping>
+</web-app> extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("运行HttpServlet中的doGet方法");
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("运行HttpServlet中的doPost方法");
+	}
+	
+
+}

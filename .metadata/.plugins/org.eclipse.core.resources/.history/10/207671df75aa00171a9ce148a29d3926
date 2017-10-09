@@ -1,0 +1,17 @@
+package it.cast.cn.day37.demo03.service;
+
+import it.cast.cn.day37.demo03.dao.UserDao;
+
+public class UserService {
+	private UserDao User user = userDao = new UserDao();
+	public boolean Login(String username, String password){
+		try {
+			User user = userDao.findByUsernam(username);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,24 @@
+package cn.itcast.day33.demo1;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//创建一个类，并继承HttpServlet
+public class HelloServlet extends HttpServlet {
+
+	//重写doGet/doPost方法
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("运行了HelloServlet中的doGet方法");
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("运行了HelloServlet中的doPost方法");
+	}
+
+}

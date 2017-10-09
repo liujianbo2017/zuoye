@@ -1,0 +1,31 @@
+package it.cast.cn.day37.demo02.copy;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class TestReadSessionServlet extends HttpServlet{
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("请求到达   test read session servlet");
+		//取得Session
+		HttpSession session = req.getSession();
+		//从Session域中取得之前（TestSessionServlet中保存的）保存的数据
+		String msg = (String)session.getAttribute("testMsg");
+		
+		System.out.println("在另一个Servlet中从Session域中读取的testMsg数据：" + msg);
+		
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+	
+
+}

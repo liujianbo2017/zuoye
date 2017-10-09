@@ -1,0 +1,15 @@
+package cn.itcast.day38.demo07.service.impl;
+
+import java.util.List;
+
+import cn.itcast.day38.demo07.domain.Product;
+
+public class ProductServiceImpl implements ProductService {
+
+	@Override
+	public List<Product> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

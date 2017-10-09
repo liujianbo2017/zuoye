@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+     <h1>大家好这是在Eclipse开发的页面</h1>
+     <!-- 发送的是GET方式的其请求,调用的Servlet中的doGet方法  -->
+     <a href="/day33demo/hello.servlet">点加超链接,发送的是GET请求</a>
+     <!-- 发送的是POST方式的请求,调用的Servlet中的doPost方法 -->
+     <form action="/day33demo/hello.servlet" method="post">
+         <input type="text" name="temp" /><input type="submit"/>    
+     </form>
+
+</body>
+</html>

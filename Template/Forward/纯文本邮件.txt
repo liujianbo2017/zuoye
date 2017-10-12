@@ -1,0 +1,14 @@
+%CURSOR
+
+------------------				 
+%FROMNAME
+%DATE
+
+-------------------------------------------------------------
+发件人：%OFROMNAME
+发送日期：%ODATE %OTIME
+收件人：%OTONAME
+抄送：%OCCNAME
+主题：%OSUBJ
+
+%TEXT

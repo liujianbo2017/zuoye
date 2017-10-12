@@ -1,0 +1,23 @@
+package cn.itcast.day40.demo04;
+
+public class NormalHuman implements Human {
+
+	@Override
+	public void eat() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void say() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

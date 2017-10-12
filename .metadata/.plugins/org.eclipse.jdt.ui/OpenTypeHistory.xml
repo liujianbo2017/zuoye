@@ -2,7 +2,25 @@
 <typeInfoHistroy>
 <typeInfo handle="=day34demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpServletRequest.class[HttpServletRequest" modifiers="1537" timestamp="1392258570000"/>
 <typeInfo handle="=day34demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet(Servlet.class[Servlet" modifiers="1537" timestamp="1392258570000"/>
-<typeInfo handle="=day34demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpServlet.class[HttpServlet" modifiers="1057" timestamp="1392258570000"/>
 <typeInfo handle="=day39demo/src&lt;cn.itcast.day39.demo01.dao{ProductDao.java[ProductDao" modifiers="513" timestamp="1507538629008"/>
 <typeInfo handle="=day39demo/src&lt;cn.itcast.day39.demo01.service{ProductService.java[ProductService" modifiers="513" timestamp="1507539057303"/>
+<typeInfo handle="=day40demo/src&lt;cn.itcast.day40.demo02.service{UserService.java[UserService" modifiers="513" timestamp="1507629132454"/>
+<typeInfo handle="=day40demo/src&lt;cn.itcast.day40.demo02.dao{UserDao.java[UserDao" modifiers="513" timestamp="1507629241212"/>
+<typeInfo handle="=day40demo/E:\/jianbo\/Java\/jdk1.7.0_72\/jre\/lib\/rt.jar&lt;com.sun.jmx.snmp(UserAcl.class[UserAcl" modifiers="1537" timestamp="1500626359342"/>
+<typeInfo handle="=day40demo/E:\/jianbo\/Java\/jdk1.7.0_72\/jre\/lib\/rt.jar&lt;java.util.logging(Filter.class[Filter" modifiers="1537" timestamp="1500626359342"/>
+<typeInfo handle="=day40demo/src&lt;cn.itcast.day40.demo04{Human.java[Human" modifiers="513" timestamp="1507638452808"/>
+<typeInfo handle="=day40demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpServletRequestWrapper.class[HttpServletRequestWrapper" modifiers="33" timestamp="1392258570000"/>
+<typeInfo handle="=day40demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet(Filter.class[Filter" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet(ServletRequestListener.class[ServletRequestListener" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpSessionListener.class[HttpSessionListener" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpSessionContext.class[HttpSessionContext" modifiers="1050113" timestamp="1392258570000"/>
+<typeInfo handle="=day34demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpServlet.class[HttpServlet" modifiers="1057" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpSessionAttributeListener.class[HttpSessionAttributeListener" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet(ServletContext.class[ServletContext" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpSessionBindingListener.class[HttpSessionBindingListener" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpSession.class[HttpSession" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet.http(HttpSessionActivationListener.class[HttpSessionActivationListener" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day41demo/src&lt;cn.itcast.day41.demo08.dao{UserDao.java[UserDao" modifiers="513" timestamp="1507725422069"/>
+<typeInfo handle="=day41demo/D:\/tomcat\/apache-tomcat-7.0.52\/lib\/servlet-api.jar&lt;javax.servlet(ServletContextListener.class[ServletContextListener" modifiers="1537" timestamp="1392258570000"/>
+<typeInfo handle="=day42demo/src&lt;cn.itcast.day42.demo01.dao{ProductDao.java[ProductDao" modifiers="513" timestamp="1507727560311"/>
 </typeInfoHistroy>

@@ -1,0 +1,14 @@
+package cn.itcast.day40.demo02.dao.impl;
+
+import cn.itcast.day40.demo02.dao.UserDao;
+import cn.itcast.day40.demo02.domain.User;
+
+public class UserDaoImpl implements UserDao {
+
+	@Override
+	public User findByUsername(String username) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

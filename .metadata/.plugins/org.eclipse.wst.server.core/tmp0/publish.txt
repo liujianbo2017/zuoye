@@ -1,3 +1,4 @@
 #Tomcat publish data
-#Mon Oct 09 17:43:37 CST 2017
+#Wed Oct 11 21:54:36 CST 2017
 org.eclipse.jst.jee.server\:day39demo=D\:\\tomcat\\apache-tomcat-7.0.52\\webapps\\day39demo
+org.eclipse.jst.jee.server\:day42demo=D\:\\tomcat\\apache-tomcat-7.0.52\\webapps\\day42demo

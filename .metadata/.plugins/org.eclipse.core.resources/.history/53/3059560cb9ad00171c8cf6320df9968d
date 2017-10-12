@@ -1,0 +1,27 @@
+package cn.itcast.day40.demo04;
+//超能力人的类,相当于被包装的类
+public class MetaHuman implements Human {
+	//持有原始被增强的对象
+	private Human h;
+	//通过构造器得到原始对象
+	public MetaHuman(Human h){
+		this.h = h;
+	}
+	@Override
+	public void eat() {
+		h.eat();
+
+	}
+
+	@Override
+	public void say() {
+		h.say();
+	}
+
+	@Override
+	public void run() {
+		h.run();
+
+	}
+
+}

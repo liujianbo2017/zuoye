@@ -21,12 +21,18 @@ public class RegistServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//解决中文乱码
 		req.setCharacterEncoding("UTF-8");
+		//创建Linkman对象
 		Linkman lkm = new Linkman();
+		//调用MyBeanUtils方法将lkm封装到Linkman中
 		MyBeanUtils.populate(lkm, req.getParameterMap());
+		//调用业务层方法
 		boolean flag = linkmanService.regist(lkm);
-		req.setAttribute("linkmans", flag? "保存成功":"保存失败");
-		req.getRequestDispatcher("/linkman_save.jsp").forward(req, resp);
+		//解决中文乱码问题
+		resp.setContentType("text/html; charset=UTF-8");
+		//打印注册结果
+		resp.getWriter().write("保存成功");
 	}
 	
 

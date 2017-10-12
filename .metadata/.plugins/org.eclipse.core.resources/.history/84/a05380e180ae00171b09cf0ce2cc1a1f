@@ -1,0 +1,5 @@
+package cn.itcast.day41.demo08.dao;
+
+public interface UserDao {
+
+}

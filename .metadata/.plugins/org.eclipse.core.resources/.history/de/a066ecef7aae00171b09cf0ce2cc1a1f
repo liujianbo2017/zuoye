@@ -1,0 +1,8 @@
+package cn.itcast.day41.demo07;
+
+public class TestMail {
+	public static void main(String[] args) {
+		MailUtils.sendMail("", "这是测试邮件主题","这是邮件内容");
+	}
+
+}

@@ -1,0 +1,23 @@
+package cn.itcast.day41.demo01;
+
+import javax.servlet.ServletContextAttributeEvent;
+import javax.servlet.ServletContextAttributeListener;
+
+public class MyRequestAttributeListener implements ServletContextAttributeListener{
+
+	@Override
+	public void attributeAdded(ServletContextAttributeEvent scab) {
+		System.out.println("请求域中发生了添加事件" + scab.getName()+"--"+scab.getValue());
+	}
+
+	@Override
+	public void attributeRemoved(ServletContextAttributeEvent scab) {
+		System.out.println("请求域中发生了移除事件" + scab.getName()+"--"+scab.getValue());
+	}
+
+	@Override
+	public void attributeReplaced(ServletContextAttributeEvent scab) {
+		System.out.println("请求域中发生了替换事件" + scab.getName()+"--"+scab.getValue());
+	}
+
+}

@@ -1,0 +1,10 @@
+package cn.itcast.estore.dao;
+
+import cn.itcast.estore.utils.User;
+
+public interface UserDao {
+
+	void insert( User user ) throws Exception;
+	
+	void updateState( String code ) throws Exception;
+}

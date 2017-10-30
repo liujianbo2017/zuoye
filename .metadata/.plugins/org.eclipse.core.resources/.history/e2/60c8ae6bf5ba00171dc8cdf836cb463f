@@ -1,0 +1,33 @@
+package cn.itcast.estore.web.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.domain.Cart;
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+public class CartServlet extends BaseServlet {
+
+	public String add(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+	
+		//接受请求
+		String pid = req.getParameter("pid");
+		int count = 1;
+		try{
+			count = Integer.parseInt(req.getParameter("count"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		//调用业务逻辑,把商品加入购物车中
+		//从Session中取得当前购物车对象,如果为空,则业务逻辑方法负责创建购物车对象
+		Cart cart = (Cart) req.getSession().getAttribute("cart");
+		cart = cartService.add(cart , pid , count);
+		
+		//把购物车保存回Session域中
+		req.getSession().setAttribute("cart", cart);
+		return "";
+	}
+}

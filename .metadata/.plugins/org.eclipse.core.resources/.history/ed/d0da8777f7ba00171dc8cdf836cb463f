@@ -1,0 +1,19 @@
+package cn.itcast.estore.service.impl;
+
+import cn.itcast.estore.domain.Cart;
+import cn.itcast.estore.domain.CartItem;
+
+public class CartService2 implements cn.itcast.estore.service.CartService {
+
+	//把传入的商品和数量封装进CartItem,加入到购物车逻辑
+	@Override
+	public Cart add(Cart cart, String pid, int count) {
+		
+		//把传入的pid和count封装成购物项对象
+		CartItem cartItem = new CartItem();
+		cartItem.setCount(count);
+		cartItem.setProduct(productDao.get);
+		return null;
+	}
+
+}

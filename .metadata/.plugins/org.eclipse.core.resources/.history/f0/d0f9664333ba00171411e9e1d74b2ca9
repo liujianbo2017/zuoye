@@ -1,0 +1,7 @@
+package cn.itcast.estore.web.servlet;
+
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+public class ProductServlet extends BaseServlet {
+
+}

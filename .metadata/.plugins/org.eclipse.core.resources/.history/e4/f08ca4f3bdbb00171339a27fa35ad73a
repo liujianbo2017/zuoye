@@ -1,0 +1,6 @@
+package cn.itcast.estore.service;
+
+public interface OrderService {
+
+	boolean generate(String uid,String[] pids, int[] counts);
+}

@@ -1,0 +1,28 @@
+package cn.itcast.estore.service;
+
+import java.util.List;
+
+import cn.itcast.estore.domain.Category;
+
+public class CategoryServiceImpl extends BaseService implements CategoryService {
+
+	//取得所有的分类
+	@Override
+	public List<Category> findAll() {
+		List<Category> list = null;
+		try {
+			list = categoryDao.findAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public String findAllJson() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

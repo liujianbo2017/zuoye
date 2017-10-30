@@ -1,0 +1,53 @@
+package cn.itcast.estore.web.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.constant.Constant;
+import cn.itcast.estore.domain.User;
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+//处理和订单相关的Servlet
+public class OrderServlet extends BaseServlet{
+
+	//生成订单
+	public String generate(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+
+		//接受请求,PID和COUNT()多个
+		String[] pids = req.getParameterValues("pid");
+		String[] temp = req.getParameterValues("count");
+		int[] counts = new int[temp.length];
+		for (int i = 0; i < temp.length; i++) {
+			counts[i] = Integer.parseInt(temp[i]);
+		}
+		//提交过的商品,在购物车清空
+		req.getSession().removeAttribute(Constant.SESSION_USERNAME);
+		//判断当前用户是否登录,如果未登录则跳转到登录页面
+		User user = (User) req.getSession().getAttribute(Constant.SESSION_USERNAME);
+		if(user == null){
+			return req.getContextPath()+"/user.servlet?method=goLoginUI";
+		}
+		
+		//调用业务层逻辑
+		boolean flag = orderService.generate(user.getUid(), pids , counts);
+		
+		//转跳到信息页面显示结果
+		req.setAttribute("msg", flag ? "下单成功!请付款":"下单失败!请联系管理员");
+		
+		return "/info.jsp";
+	}
+	
+	//
+	public String showMine(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+		//从Session域中获取用户对象
+		User user = (User) req.getSession().getAttribute(Constant.SESSION_USERNAME);
+		//判断当前用户是否登录,如果为登录则跳转登录页面
+		if(user == null){
+			return req.getContextPath()+"/user.servlet?method=goLoginUI";
+		}
+		return "";
+	}
+}

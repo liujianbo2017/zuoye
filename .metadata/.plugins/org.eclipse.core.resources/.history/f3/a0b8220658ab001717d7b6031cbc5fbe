@@ -1,7 +1,0 @@
-package cn.itcast.day38.demo07.servlet;
-
-import javax.servlet.http.HttpServlet;
-
-public class ProductListServlet extends HttpServlet {
-
-}

@@ -1,0 +1,14 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+
+		<c:if test="${ empty sessionScope.current_user }">
+			<li><a href="${pageContext.request.contextPath}/user.servlet?method=goLoginUI">登录</a></li>
+			<li><a href="${pageContext.request.contextPath}/user.servlet?method=goRegistUI">注册</a></li>
+			<li>
+				<input type="submit" width="100" value="退出" name="exit" value="e" border="0"
+					style="background: url('./images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+			</li>
+		</c:if>
+		<c:if test="${ not empty sessionScope.current_user }">
+			<li>${sessionScope.current_user.name }，您好</li>
+			<li><a href="#">我的订单</a></li>
+		</c:if>

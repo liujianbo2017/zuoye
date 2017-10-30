@@ -1,5 +1,0 @@
-package cn.itcast.day40.demo04;
-
-public interface Human {
-
-}

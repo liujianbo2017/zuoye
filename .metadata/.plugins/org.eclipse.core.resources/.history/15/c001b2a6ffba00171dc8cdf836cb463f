@@ -1,0 +1,8 @@
+package cn.itcast.estore.service;
+
+import cn.itcast.estore.domain.Cart;
+
+public interface CartService {
+
+	Cart add(Cart cart, String pid, int count);
+}

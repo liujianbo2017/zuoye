@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+
+	<marquee>当前页面的测试内容</marquee>
+	
+	<input type="button" value="测试发送GET方式的异步请求"  onclick="sendGet();"/>
+	<input type="button" value="测试发送POST方式的异步请求" onclick="sendPost();" />
+	
+	<div id="show" style="border:1px dotted blue;">
+		这是DIV原始内容	
+	</div>
+</body>
+<script>
+
+	//说明页面被加载
+	alert('当前页面被加载');
+	
+	//当点击此按钮的时候,调用此函数
+	function sendGet() {
+		//创建XMLHttpRuqest对象
+		var req = new XMLHttpRequest();
+		
+		//调用open方法设置参数
+		req.open('GET','/day44demo/testAjax.servlet?username=admin&password=123',true);
+		
+		//发送
+		req.send();
+		//给事件绑定处理函数
+		req.onreadystatechange = function(){
+			//判断就绪状态是否为4(响应接受完成)
+			if(req.readyState == 4){
+				//判断HTTP状态码是否为200
+				if(req.status == 200){
+					//得到响应内容,并更新页面中一个DIV标签中的内容
+					document.getElementById('show').innerHTML = req.responseText;
+				}
+			}
+		}
+	}
+	
+	//当点击测试按钮Post,调用此函数
+	function sendPost(){
+		//创建XMLHttpRequest对象
+		var req = new XMLHttpRequest();
+		
+		//调用open方法设置参数
+		req.open('POST','/day44demo/testAjax.servlet', true)
+		
+		//设置请求头(如果不设置,则post提交的参数服务器收不到)
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+		
+		//发送,如果发送的方式是post,则要提交参数的查询字符串要作为参数传入send方法
+		req.send('username=admin&password=123');
+		
+		//给事件绑定处理函数
+		req.onreadystatechange = function(){
+			//判断就绪状态是否为4
+			if(req.readyState == 4){
+				//判断Http状态码是否为200
+				if(req.status == 200){
+					//得到响应内容,并更新一个DIV标签中的内容
+					document.getElementById('show').innerHTML = req.responseText;
+				}
+			}
+		}
+	}
+	
+</script>
+</html>

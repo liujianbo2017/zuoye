@@ -1,0 +1,64 @@
+package cn.itcast.estore.dao.impl;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+
+import cn.itcast.estore.dao.UserDao;
+import cn.itcast.estore.domain.User;
+import cn.itcast.estore.utils.JdbcUtils;
+
+public class UserDaoImpl implements UserDao{
+
+	//tb_user表中的所有字段名称
+	private static final String FIELDS = " uid,username,password,name,email,telephone,sex,birthday,state,code ";
+	//把用户注册信息添加到数据库中
+	@Override
+	public void insert(User user) throws Exception {
+		QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+		
+		String sql = "insert into tb_user("+FIELDS+") values(?,?,?,?,?,?,?,?,?,?)";
+		
+		int r = runner.update(sql,
+				user.getUid(),
+				user.getUsername(),
+				user.getPassword(),
+				user.getName(),
+				user.getEmail(),
+				user.getTelephone(),
+				user.getSex(),
+				user.getBirthday(),
+				user.getState(),
+				user.getCode()
+				);
+		if(r==0){
+			throw new Exception("注册用户信息失败"+user);
+		}
+	}
+
+	//根据激活码把用户状态置为已激活，并把激活码置为空
+	@Override
+	public void updateState(String code) throws Exception {
+		QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+		
+		String sql = "update tb_user set state=1,code='' where code=?";
+		
+		int r = runner.update(sql,code);
+		
+		if(r==0){
+			throw new Exception("用户激活失败"+code);
+		}
+		
+	}
+
+	@Override
+	public User findByUsername(String username) throws Exception {
+		QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+		
+		String sql = "select "+FIELDS+" from tb_user where username=?";
+		
+		User user = runner.query(sql, new BeanHandler<User>(User.class),username);
+		
+		return user;
+	}
+
+}

@@ -1,0 +1,64 @@
+package cn.itcast.estore.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
+
+import cn.itcast.estore.dao.ProductDao;
+import cn.itcast.estore.domain.Product;
+import cn.itcast.estore.utils.JdbcUtils;
+
+public class ProductDaoImpl implements ProductDao {
+
+	private static final String FIELDS = " pid,pname,shop_price,market_price,pimage,pdate,is_hot,pflag,pdesc,cid ";
+	//查找前9个热门商品
+	@Override
+	public List<Product> findHots() throws Exception {
+		QueryRunner runner = new QueryRunner( JdbcUtils.getDataSource() );
+		String sql = "select " + FIELDS + " from tb_product where is_hot=1 limit 0,9";
+		List<Product> list = runner.query(sql, new BeanListHandler<Product>(Product.class));
+		
+		return list;
+	}
+
+	//查找前9个最新商品
+	@Override
+	public List<Product> findNews() throws Exception {
+		QueryRunner runner = new QueryRunner( JdbcUtils.getDataSource() );
+		String sql = "select " + FIELDS + " from tb_product order by pdate desc limit 0,9";
+		List<Product> list = runner.query(sql, new BeanListHandler<Product>(Product.class));
+		
+		return list;
+	}
+
+	//根据ID显示商品的详细信息
+	@Override
+	public Product get(String pid) throws Exception {
+		QueryRunner runner = new QueryRunner( JdbcUtils.getDataSource() );
+		String sql = "select "+FIELDS+" from tb_product where pid=?";
+		Product product = runner.query(sql, new BeanHandler<Product>(Product.class) , pid);
+		
+		return product;
+	}
+
+	//取得指定页下的指定页的商品
+	@Override
+	public List<Product> findByCategoryByPage(String cid, int startIndex, int pageSize) throws Exception {
+		QueryRunner runner = new QueryRunner( JdbcUtils.getDataSource() );
+		String sql = "select "+FIELDS+" from tb_product where cid=? limit ?,?";
+		List<Product> list = runner.query(sql, new BeanListHandler<Product>(Product.class) ,cid, startIndex, pageSize);
+		
+		return list;
+	}
+
+	//取得指定页下的商品总数
+	@Override
+	public long getCountByCategory(String cid) throws Exception {
+		QueryRunner runner = new QueryRunner( JdbcUtils.getDataSource() );
+		return 0;
+	}
+
+}

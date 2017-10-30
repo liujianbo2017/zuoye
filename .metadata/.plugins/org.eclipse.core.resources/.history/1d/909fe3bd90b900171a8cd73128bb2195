@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 提交到LoginServlet，提交的目标为相对路径 -->
+	<form action="../login.servlet" method="get">
+		<table align="center">
+			<tr>
+				<td>用户名</td>
+				<td><input type="text" name="username" /></td>
+			</tr>
+			<tr>
+				<td>密码</td>
+				<td><input type="password" name="password"/></td>
+			</tr>
+			<tr>
+				<td>验证码</td>
+				<td>
+					<input type="text" size="5" name="checkCode"/>
+					<!-- 图片用于显示验证码，但图片的来源指向一个Servlet，此Servlet负责生成图片验证码，发回给此标签显示 -->
+					<img onclick="changeImg(this);" style="width:80px;height:30px;cursor:pointer;" src="/day35demo/checkCode.servlet" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="登录"/>
+					<input type="reset" value="重填" />
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
+<script>
+	//当点击验证码图片时，执行此函数，并传入被点击的图片的DOM对象
+	function changeImg( img ){
+		//重新设置图片标签的src到生成验证码的Servlet，Servlet接收到新的请求，自然会再运行一次，也就是再生成一个验证码
+		//当新设置的目标和原来一样时，浏览器自动访问缓存，所以不会发新请求。
+		//可以使用日期对象生成当前时间的毫秒值，当成参数提交给Servlet
+		//每次提交的目标虽然相同，但参数不同，所以浏览器肯定会发新请求
+		//而提交的这个参数对于服务端Servlet来说不需要理会
+		var d = new Date();
+		img.src = '/day35/checkCode.servlet';
+		
+	}
+
+
+</script>

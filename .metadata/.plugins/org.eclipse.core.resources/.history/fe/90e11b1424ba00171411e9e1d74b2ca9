@@ -1,0 +1,100 @@
+package cn.itcast.estore.web.filter;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import static cn.itcast.estore.constant.Constant.SESSION_USERNAME;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
+import cn.itcast.estore.domain.User;
+import cn.itcast.estore.service.UserService;
+import cn.itcast.estore.service.impl.UserServiceImpl;
+
+public class EncodingFilter implements Filter {
+
+	private UserService userService = new UserServiceImpl();
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		//为了能够调用HttpServletRequest中的方法,所以对Request对象进行强转
+		//因为是在匿名内部类中调用,所以此类型的对象必须加final
+		final HttpServletRequest request2 = (HttpServletRequest)request;
+		
+		//从Cookie中取得保存了用于自动登录的用户名和密码
+		Cookie[] cookies = request2.getCookies();
+		if(cookies!=null){
+			for (Cookie cookie : cookies) {
+				if("autologin".equalsIgnoreCase(cookie.getName())){
+					String t = cookie.getValue();
+					String[] str = t.split("&");
+					if(str!=null){
+						//调用业务逻辑，进行登录验证
+						User user = userService.login(str[0], str[1]);
+						//判断用户对象是否为空，不为空，则说明登录成功，
+						if(user!=null){
+							//把用户对象保存到Session域中，说明当前为已登录状态(名字固定为current_user)
+							request2.getSession().setAttribute(SESSION_USERNAME, user);
+					}
+					}
+				}
+			}
+		}
+		//解决中文乱码问题,代码实现
+		//如果是post方法,直接返回原值
+		request.setCharacterEncoding("UTF-8");
+		//解决响应信息时中文乱码问题
+		request.setCharacterEncoding("UTF-8");
+		
+		//创建一个实现HttpServletRequest接口的代理对象
+		HttpServletRequest request1 = (HttpServletRequest)Proxy.newProxyInstance(
+				this.getClass().getClassLoader(),//当前类的加载器 
+				new Class[]{HttpServletRequest.class},//要实现的接口的数组 
+				new InvocationHandler() {
+					
+					@Override
+					public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+						//调用原始方法,得到返回值
+						Object obj = method.invoke(request2, args);
+						
+						//判断当前要执行的方法是否是getParameter方法
+						if("getParameter".equals(method.getName())){
+							//判断当前提交方式是否是GET
+							if("GET".equalsIgnoreCase(request2.getMethod())){
+								//要判断是否为空,提交的参数有可能为空
+								if(obj != null){
+									//当前getParameter方法的返回值是字符串,所以要进行强转
+									String str = (String)obj; 
+									//重新编码
+									obj = new String(str.getBytes("ISO-8859-1"),"UTF-8");
+								}
+							}
+						}
+						//不需要进行增强的方法,调用原来对象的同名方法,返回原值
+						return obj;
+					}
+				});
+		chain.doFilter(request1, response);
+	}
+			
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

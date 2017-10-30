@@ -1,0 +1,6 @@
+package cn.itcast.estore.dao;
+
+public interface CartDao {
+
+	
+}

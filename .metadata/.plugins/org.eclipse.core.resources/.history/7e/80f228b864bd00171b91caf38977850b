@@ -1,0 +1,26 @@
+package cn.itcast.estore.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import cn.itcast.estore.dao.CategoryDao;
+import cn.itcast.estore.domain.Category;
+import cn.itcast.estore.utils.JdbcUtils;
+
+public class CategoryDaoImpl implements CategoryDao {
+
+	private static final String FIELDS = " cid,cname,description ";
+	@Override
+	public List<Category> findAll() throws Exception {
+		
+		//取得所有的分类
+		QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+		String sql = "select "+FIELDS+" from tb_category";
+		List<Category> list = runner.query(sql, new BeanListHandler<Category>(Category.class));
+		
+		return list;
+	}
+
+}

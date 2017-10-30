@@ -1,5 +1,0 @@
-package cn.itcast.day39.demo01.service;
-
-public interface ProductService {
-
-}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form id="form_add_category" action="category.servlet" method="post">  
+	<input type="hidden" name="method" value="add" /> 
+	    <div>   
+	        <label for="name">分类名称</label>   
+	        <input class="easyui-validatebox" type="text" name="cname" data-options="required:true" />   
+	    </div>   
+	    <div>   
+	        <label for="description">分类描述</label>   
+	        <input class="easyui-validatebox" type="text" name="description" data-options="validType:'email'" />   
+	    </div>   
+	    <div style="text-align:center;">
+			<input type="submit" value="添加" />
+			<input type="reset" />
+		</div>   
+	</form>  
+	<script>
+	$('#form_add_category').form({    
+		//异步请求提交表单后的响应回掉函数
+	    success:function(data){    
+	          
+	    }    
+	});    
+
+	</script>
+</body>
+</html>

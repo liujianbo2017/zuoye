@@ -1,0 +1,9 @@
+package cn.itcast.estore.service;
+
+import cn.itcast.estore.dao.UserDao;
+import cn.itcast.estore.dao.impl.UserDaoImpl;
+
+public class BaseService {
+
+	protected UserDao userDao = new UserDaoImpl();
+}

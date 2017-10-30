@@ -1,3 +1,31 @@
 1507727370408	Delete element
 1507727586994	Delete element
 1507727917271	Rename type 'ProductServiec'
+1507792978216	Delete element
+1507793066231	Delete element
+1507794216806	Rename type 'Servlet'
+1507794284326	Copy compilation unit
+1507798425720	Move compilation unit
+1507881666928	Copy compilation unit
+1507881676990	Delete element
+1507883742986	Move compilation unit
+1507883747370	Move compilation unit
+1507884619003	Delete element
+1507884745651	Delete element
+1507886844116	Move 'product.jsp' to 'WebContent'
+1507886848889	Move 'product_add.jsp' to 'WebContent'
+1507886865020	Delete element
+1507886874021	Move 'info.jsp' to 'WebContent'
+1507886877734	Delete element
+1507886880745	Delete element
+1507966066526	Copy folder
+1507966072922	Delete element
+1507966087180	Copy folder
+1507966093051	Copy folder
+1507966102302	Copy folder
+1507966108884	Copy folder
+1507966124958	Copy files
+1507969089868	Copy compilation unit
+1507969094052	Copy file
+1507970348612	Copy compilation unit
+1507976723282	Copy file

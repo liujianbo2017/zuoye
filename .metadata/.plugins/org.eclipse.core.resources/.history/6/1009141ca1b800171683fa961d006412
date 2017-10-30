@@ -1,0 +1,28 @@
+package cn.itcast.demo01.web.servlet.base;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.demo01.service.ProductService;
+import cn.itcast.demo01.service.impl.ProductServiceImpl;
+
+//所有Servlet的基类,持有所有的Service,进行动态的方法分发,减少Servlet的数据,让一个Servlet可以处理多种请求
+public class BaseServlet extends HttpServlet{
+
+	protected ProductService productService = new ProductServiceImpl();
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doPost(req, resp);
+	}
+
+}

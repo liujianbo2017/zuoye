@@ -1,0 +1,17 @@
+package cn.itcast.estore.domain;
+
+import java.util.UUID;
+
+public class UUIDUtils {
+
+	//生成ID的工具方法（得到一个32位的随机且唯一的字符串，当ID用）
+	public static String generateID(){
+		//因为36位结果中含四个减号，所以可以去掉，数据库中保存32位
+		return UUID.randomUUID().toString().replace("-", "");
+	}
+	
+	//生成64位激活码
+	public static String generateCode(){
+		return generateID()+generateID();
+	}
+}

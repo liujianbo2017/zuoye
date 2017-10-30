@@ -1,0 +1,11 @@
+package cn.itcast.day52.demo02;
+
+public class AxeFactory {
+
+	public static Class clazz = null;
+	
+	//简单静态工厂
+	static{
+		
+	}
+}

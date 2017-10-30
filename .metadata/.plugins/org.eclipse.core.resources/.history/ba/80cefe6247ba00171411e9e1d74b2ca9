@@ -1,0 +1,47 @@
+package cn.itcast.estore.service.impl;
+
+import java.util.List;
+
+import cn.itcast.estore.domain.Product;
+import cn.itcast.estore.service.BaseService;
+import cn.itcast.estore.service.ProductService;
+
+public class ProductServiceImpl extends BaseService implements ProductService {
+
+	@Override
+	public List<Product> findHots() {
+		List<Product> list = null;
+		try {
+			list = productDao.findHots();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Product> findNews() {
+		List<Product> list = null;
+		try {
+			list = productDao.findNews();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public Product get(String pid) {
+		Product product = null;
+		try {
+			product = productDao.get(pid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return product;
+	}
+
+}

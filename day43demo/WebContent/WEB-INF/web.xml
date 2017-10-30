@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  
+  <!--过滤器 解决中文乱码问题  -->
+  <filter>
+  		<filter-name>encondingFilter</filter-name>
+  		<filter-class>cn.itcast.day43.demo01.web.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  		<filter-name>encondingFilter</filter-name>
+  		<url-pattern>*.servlet</url-pattern>
+  </filter-mapping>
+  
+  <!--案列一 分页显示商品信息  -->
+  <servlet>
+  		<servlet-name>productListByPage</servlet-name>
+  		<servlet-class>cn.itcast.day43.demo01.web.servlet.ProductListByPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>productListByPage</servlet-name>
+  		<url-pattern>/productListByPage.servlet</url-pattern>
+  </servlet-mapping>
+  
+   <!--案列二 条件查询显示商品信息  -->
+  <servlet>
+  		<servlet-name>productListByCondition</servlet-name>
+  		<servlet-class>cn.itcast.day43.demo01.web.servlet.ProductListByConditionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>productListByCondition</servlet-name>
+  		<url-pattern>/productListByCondition.servlet</url-pattern>
+  </servlet-mapping>
+</web-app>

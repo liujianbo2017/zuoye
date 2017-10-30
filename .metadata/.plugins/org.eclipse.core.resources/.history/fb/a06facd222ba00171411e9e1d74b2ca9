@@ -1,0 +1,167 @@
+package cn.itcast.estore.web.servlet;
+
+//专门用于导入静态常量
+import static cn.itcast.estore.constant.Constant.SESSION_USERNAME;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.domain.User;
+import cn.itcast.estore.utils.MyBeanUtils;
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+public class UserServlet extends BaseServlet {
+
+
+	//转跳到注册页面的Servlet
+	public String goRegistUI(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+		
+		return "/register.jsp";
+	}
+	//转跳到注册页面的Servlet
+	public String goLoginUI(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+			
+		return "/login.jsp";
+	}
+	
+	//进行用户注册的方法
+	public String regist(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+		//接受请求,并封装
+		User user = new User();
+		MyBeanUtils.populate(user, req.getParameterMap());
+		
+		//调用业务层方法,返回布尔值表示是是否成功
+		boolean flag = userService.regist( user );
+		
+		//转跳到信息页面显示结果（根据结果布尔值显示注册成功或失败）
+		req.setAttribute("msg", flag ? "注册成功! 请到注册邮箱中接收激活邮件进行激活后登录网站。":"注册失败! 请联系客服人员");
+		
+		return "/info.jsp";
+	}
+	
+	//激活用户的方法
+	public String active(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		//接受请求,得到激活码
+		String code = req.getParameter("code");
+		
+		//调用业务逻辑,进行激活
+		boolean flag = userService.active(code);
+		
+		//转跳到信息页面显示结果（根据结果布尔值显示注册成功或失败）
+		req.setAttribute("msg", flag?"激活成功!请登录":"激活失败!请联系客服人员");
+		
+		return "/info.jsp";
+	}
+	
+	//用户登录的方法
+		public String login(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+			//接受请求,得到数据
+			String username = req.getParameter("username");
+			String password = req.getParameter("password");
+			String autoLogin = req.getParameter("autoLogin");
+			String exit = req.getParameter("exit");
+			String remember = req.getParameter("remember");
+			//调用业务逻辑,进行激活
+			User user = userService.login(username , password);
+			//如果登录成功
+			String path;
+			if( user != null){
+				//把用户对象保存到Session域中（以固定的名）
+				req.getSession().setAttribute( SESSION_USERNAME, user );
+				//判断用户是否勾选自动登录
+				if("t".equals(autoLogin)){
+					//创建Cookie对象
+					Cookie c = new Cookie("autoLogin", username+"&"+password);
+					//设置失效时间
+					c.setMaxAge(30*24*60*60);
+					//添加到Cookie中
+					resp.addCookie(c);
+					
+					//判断用户是否勾选记住用户名
+					if("u".equals(remember)){
+						//创建Cookie对象
+						Cookie rememberCookie = new Cookie("autoLogin", username);
+						//设置失效时间
+						rememberCookie.setMaxAge(30*24*60*60);
+						//添加到Cookie中
+						resp.addCookie(rememberCookie);
+					}
+				}
+				//因为是一个登录的表单提交到达的当前Servlet，要转跳到首页，而首页中可能需要进行刷新
+				//为了防止出现表单重复提交的问题，所以这里使用重定向回到首页
+				//返回的字符串以项目名开头，所以会使用重定向，因为设置了默认访问首页，所以只有项目名即可
+				path = req.getContextPath();
+			}else{
+				req.setAttribute("msg", "登录失败!请重新登录");
+				path = "/login.jsp";
+			}
+			if("e".equals(exit)){
+				req.getSession().removeAttribute("current_user");
+			}
+			return path;
+			
+		}
+
+		protected void checkCode(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			// 生成验证码字符串
+			String src = "23456789abcdefghijkmnpqrstuvwxzy";
+			// 使用随机数从此字符串中取得四个字符，组成一个四个字符的验证码
+			Random r = new Random();
+			StringBuilder sb = new StringBuilder();
+			// 循环四次
+			for (int i = 0; i < 4; i++) {
+				// 从源字符串中随机取得一个字符
+				char c = src.charAt(r.nextInt(src.length()));
+				// 追加到StringBuilder中
+				sb.append(c);
+			}
+			String checkCode = sb.toString();
+			System.out.println(checkCode);
+			// 生成验证码图片
+			// BufferedImage对象就是一个图片，可以把它理解为一张画板
+			BufferedImage image = new BufferedImage(80, 30, BufferedImage.TYPE_INT_RGB);
+			// 得到画笔
+			Graphics g = image.getGraphics();
+			// 设置画笔为灰色
+			g.setColor(new Color(210, 210, 255));
+			//// 在画布的全范围填充矩形，相当于设置背景色
+			g.fillRect(0, 0, 80, 30);
+			// 画东西，Java中图片的坐标系，左上角是0，0点，往下是X增，往右是Y增
+			// 文字 的坐标系00点在左下角
+			for (int i = 0; i < 4; i++) {
+				// 设置颜色，10~20之间的随机字体大小和随机颜色
+				g.setFont(new Font("仿宋", Font.BOLD, 20 + r.nextInt(7)));
+				g.setColor(new Color(r.nextInt(150), r.nextInt(150), r.nextInt(150)));
+				// 画一个字符
+				g.drawString(checkCode.charAt(i) + "", i * 20 + r.nextInt(10), 20 + r.nextInt(10));
+				// 画干扰线
+				g.setColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+				g.drawLine(r.nextInt(80), r.nextInt(30), r.nextInt(80), r.nextInt(30));
+			}
+			//把图片内容发回给浏览器（resp.getOutputStream()）
+			//使用ImageIO的工具类进行图片内容的发送
+			ImageIO.write(image, "gif", resp.getOutputStream() );
+
+		}
+		public String goRemoveUI(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			/*String username = req.getParameter("username");
+			String password = req.getParameter("password");*/
+			//删除Session域中的用户名
+			req.getSession().removeAttribute(SESSION_USERNAME);
+			//创建Cookie对象
+			Cookie c = new Cookie("autoLogin",username+"&"+0);
+			//添加到Cookie中
+			resp.addCookie(c);
+			return "/index.jsp";
+		}
+}

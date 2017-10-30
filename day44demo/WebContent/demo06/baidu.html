@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>山寨百度</title>
+	<script type="text/javascript">
+		#show{
+			width:501px;
+			border:1px solid blue;
+			height:300px;
+			position:relative;
+			left:384px;
+			display;none;
+		}
+		
+		#show>div{
+			height:28px;
+			border-bottom:dashed 1px blue;
+			line-height:28px;
+		}
+	</script>
+	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//给输入关键字的搜索输入框绑定onkeyup事件
+			$('#ipt_keyword').keyup(function(){
+				//当在输入框中发生时键盘按键抬起事件时,把当前输入框中的内容异步发送到服务器
+				//取得输入框中内容
+				var value = this.value;
+				
+				//发送异步请求到服务器,并提交关键字
+				$.post(
+					'/daydemo/keyword.servlet',
+					'keyword='+value,
+					function(data){//data是List<Keyword>(JS的)
+						//遍历返回的集合
+						var t = '';
+					for (var i = 0; i < data.length; i++) {
+						//data[i]就是一个Keyword对象(不是Java对象,是JS模拟的对象)
+						t += '<div>'+data[i].chinesewprd+'('+data[i].pinyin+')</div>';
+					}
+						//把所有返回的关键字项设置为show的内容
+						$('show').html(t).css('height',data.length*29).show();
+					},
+					'json'
+				);
+			});
+			
+			//当输入框失去焦点时,提示框隐藏
+			$('#ipt_keyword').blur(function(){
+				$('#show').hide();
+			})
+		});
+	</script>
+</head>
+<body>
+
+	<div style="height:100px;"></div>
+	
+	<div style="text-align:center">
+		<input type="text" id="ipt_keyword" style="width:500px;height:30px;" />
+		<input type="button" value="百度一下" style="height:30px;" />
+	</div>
+	
+	<!-- 用于显示搜索提示关键字的DIV -->
+	<div id="show"></div>
+</body>
+</html>
+
+<!-- 
+		//for( var i in data ),i是下标
+		//for( var n in obj )遍历一个对象,n是对象属性名,可以obj[n]来访问属性值
+ -->

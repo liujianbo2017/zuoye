@@ -1,0 +1,14 @@
+package cn.itcast.estore.domain;
+
+import javax.sql.DataSource;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+public class JdbcUtils {
+
+	private static DataSource dataSource = new ComboPooledDataSource();
+	
+	public static DataSource getDataSource(){
+		return dataSource;
+	}
+}

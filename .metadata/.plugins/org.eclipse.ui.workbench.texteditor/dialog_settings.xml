@@ -13,13 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="getParameter" key="selection"/>
+		<item value="ordertime" key="selection"/>
 		<list key="findhistory">
+			<item value="orderitem"/>
+			<item value="rows"/>
 			<item value="getParameter"/>
 			<item value="testReadServlet"/>
 			<item value="DataLine"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ordertime"/>
 			<item value="String "/>
 		</list>
 	</section>

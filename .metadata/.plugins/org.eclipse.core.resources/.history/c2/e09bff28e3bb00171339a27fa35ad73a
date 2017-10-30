@@ -1,0 +1,179 @@
+package cn.itcast.estore.service.impl;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import cn.itcast.estore.domain.Order;
+import cn.itcast.estore.domain.OrderItem;
+import cn.itcast.estore.domain.PageBean;
+import cn.itcast.estore.domain.Product;
+import cn.itcast.estore.service.BaseService;
+import cn.itcast.estore.service.OrderService;
+import cn.itcast.estore.utils.JdbcUtils;
+import cn.itcast.estore.utils.MyBeanUtils;
+import cn.itcast.estore.utils.UUIDUtils;
+
+public class OrderServiceImpl extends BaseService implements OrderService {
+
+	/**
+	 * 生成订单的业务逻辑方法
+	 * 要生成一个订单,需要在数据库中插入一条订单数据,和N条订单项数据
+	 * 这些插入操作要么全成功,要么全失败,所以要开启事物
+	 */
+	@Override
+	public boolean generate(String uid, String[] pids, int[] counts) {
+		boolean flag = false;
+		//得到线程绑定的连接对象
+		Connection conn = JdbcUtils.getConnection();
+		try{
+			//封装Order对象
+			Order order = new Order();
+			//自己设置ID
+			order.setOid(UUIDUtils.generateID());
+			order.setState(Order.STATE_UNPAY);//新建的订单,状态默认为未付款
+			order.setUid(uid);
+			
+			//封装OrderItem对象
+			//创建一个N个数组元素的订单项数组，N就是传入的PID的数量
+			OrderItem[] orderItems = new OrderItem[pids.length];
+			double total = 0;
+			for (int i = 0; i < pids.length; i++) {
+				OrderItem oi = new OrderItem();
+				oi.setOid(order.getOid());
+				oi.setPid(pids[i]);
+				oi.setCount(counts[i]);
+				//调用ProductDao根据ID取得商品，然后再用商品的单价乘以数量得到小计
+				oi.setSubtotal(productDao.get(pids[i]).getShop_price()*counts[i]);
+				
+				//把小计累加起来
+				total += oi.getSubtotal();
+				
+				//把本次循环创建的订单保存进数组中
+				orderItems[i] = oi;
+			}
+			//设置订单的总计
+			order.setTotal(total);
+			
+			//开启事物
+			conn.setAutoCommit(false);
+			
+			//调用Dao进行数据库操作
+			orderDao.inserOrder(order);
+			orderDao.insertOrderItem(orderItems);
+			
+			//提交事物
+			conn.commit();
+			flag = true;
+		}catch(Exception e){
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return flag;
+	}
+
+	/*
+	 * 取得指定用户指定页的订单
+	 * 遍历 订单,取得每个订单对应的订单项,及商品
+	 * 把商品封装进订单项对象中
+	 * 订单项对象保存进List集合封装到订单对象中
+	 * 在把订单的集合和分页信息封装进PageBean中
+	 */
+	@Override
+	public PageBean<Order> findByUidByPage(String uid, int pageNum, int pageSize) {
+		PageBean<Order> bean = new PageBean<Order>();
+		
+		//向PageBean中封装也有的页号页大小
+		bean.setPageNum(pageNum);
+		bean.setPageSize(pageSize);
+		
+		//根据id得到指定页的订单
+		try {
+			List<Order> orders = orderDao.findByUidByPage(uid, bean.getStartIndex(), pageSize);
+			//遍历所有订单,得到每一个订单
+			for (Order order : orders) {
+				//根据OID取得订单项及商品
+				List<Map<String,Object>> list = orderDao.findOrderItemAndProductByOid(order.getOid());
+				//使用工具方法吧以上ListMap封装成若干个orderItem对象并返回List集合,把集合封装到order对象中
+				order.setItems(getOrderItemByOid(list));
+			}
+			//取得当前用户的订单的总条数
+			long count = orderDao.getCountByUid(uid);
+			
+			//把订单数据和总条数封装到PageBean中
+			bean.setData(orders);
+			bean.setRecordCount(count);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bean;
+	}
+	
+	//把传入的MapList,封装成若干个订单对象,并保存到List中返回
+	private List<OrderItem> getOrderItemByOid( List<Map<String, Object>> list) throws Exception{
+		List<OrderItem> items = new ArrayList<OrderItem>();
+		
+		//遍历List集合,其中的每个Map,命名用BeanUtils工具封装成一个OrderItem对象和一个Product对象
+		for (Map<String,Object> map : list) {
+			OrderItem oi = new OrderItem();
+			Product p = new Product();
+			MyBeanUtils.populate(oi, map);
+			MyBeanUtils.populate(p, map);
+			//把商品封装到订单项中
+			oi.setProduct(p);
+			//把订单项封装到订单的订单项集合属性中
+			items.add(oi);
+		}
+		return items;
+	}
+
+	//根据OID得到完整的订单信息
+	@Override
+	public Order get(String oid) {
+		Order order = null;
+		try {
+			order = orderDao.get(oid);
+			//根据OID取得订单项和商品
+			List<Map<String,Object>> list = orderDao.findOrderItemAndProductByOid(oid);
+			//使用工具方法吧以上ListMap封装成若干个orderItem对象并返回List集合,把集合封装到order对象中
+			order.setItems(getOrderItemByOid(list));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return order;
+	}
+
+	@Override
+	public boolean confirm(Order order) {
+		boolean flag = false;
+		try {
+			//设置订单状态为已付款
+			order.setState(order.STATE_PAYED);
+			orderDao.updateState(order);
+			flag = true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+}

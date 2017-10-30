@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<input type="button" value="测试JSON" onclick="testJson();" />
+	<input type="button" value="测试JS对象" onclick="testJs();" />
+	
+</body>
+</html>
+<script>
+	function testJson(){
+		//把一个JSON赋给一个JavaScript变量
+		var a = { name:'楚风' , gender:true , age:20 };
+		//如果把JSON放在字符串中,则名字必须有双引号括起来(了解)
+		var b = '{ "name":"楚风" , "gender":true , "age":20}';
+		
+		alert(a.name);
+	}
+	
+	function testJs(){
+		//使用一个函数创建一个自定义的JS对象
+		var b = new Person('林动',true,30);
+		
+		alert(b.name);
+	}
+	//了解: 在JS中定期一个函数,其实相当于创建了一个类的构造器(JS是基于对象)
+	function Person( name , gender , age){
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+	}
+</script>

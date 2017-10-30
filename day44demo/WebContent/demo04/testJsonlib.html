@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script>
+		$(function(){
+			$('#btn_user').click(function(){
+				$.get(
+					'/day44demo/testJsonLib.servlet',
+					null,
+					function(data){
+						// $('#show').html(data.name);
+						
+						//如果服务器返回的JSON集合,那么data就是一个集合(数组)
+						//alert(data);
+						for (var i = 0; i < data.length; i++) {
+							$('#show').append( data[i].name + '<br/>');
+						}
+					},
+					'json'
+				);
+			});
+		});
+	</script>
+</head>
+<body>
+	
+	<input type="button" id="btn_user" value="测试JsonLIB中的对象" />
+	
+	<div id="show">
+	
+	</div>
+</body>
+</html>

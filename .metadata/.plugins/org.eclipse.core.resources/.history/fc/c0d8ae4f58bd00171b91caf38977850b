@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>分类信息</title>
+</head>
+<body>
+
+	<table id="datagrid_category"></table>
+	<script>
+		$('#datagrid_catagory').datagrid({
+			toolbar:[{
+				text:'添加',
+				iconCls:'icon-add',
+			}]
+		})
+	</script>
+</body>
+</html>

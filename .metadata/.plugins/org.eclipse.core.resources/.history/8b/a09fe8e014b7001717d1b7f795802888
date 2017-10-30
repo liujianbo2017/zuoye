@@ -1,0 +1,37 @@
+package cn.itcast.demo01.service.impl;
+
+import java.util.List;
+
+import cn.itcast.demo01.damain.Product;
+import cn.itcast.demo01.dao.ProductDao;
+import cn.itcast.demo01.dao.impl.ProductDaoImpl;
+import cn.itcast.demo01.service.ProductService;
+
+public class ProductServiceImpl implements ProductService {
+
+	private ProductDao productDao = new ProductDaoImpl();
+	@Override
+	public List<Product> findAll() {
+		List<Product> list = null;
+		try {
+			list = productDao.findAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	@Override
+	public boolean add(Product product) {
+		boolean falg = false;
+		try {
+			productDao.insert(product);
+			falg = true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return falg;
+	}
+
+}

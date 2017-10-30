@@ -1,0 +1,35 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
+		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
+		<script>
+			//当页面加载时，发送异步请求到CategoryServlet.findAll方法，得到所有分类的JSON，更新导航条
+			$(function(){
+				//发送异步请求
+				$.get(
+					'${pageContext.request.contextPath}/category.servlet',
+					'method=findAll',
+					function(data){//所有分类的JSON集合
+						//遍历data（其中每个对象就是一个分类，对应的要把一个分类的信息变成一个li标签，更新到导航条的ul标签中）
+						var t = '';
+						for (var i = 0; i < data.length; i++) {
+							//当点击此导航条按钮时，发送请求到ProductServlet的findByCategoryByPage方法，并提交分类ID
+							//data[i].cid==当前分类ID
+							//'1'==1   '17cd78f'==17cd78f， 所以EL表达式要被单引号括起来才能保证比较时不会出现异常
+							var c = data[i].cid=='${param.cid}'?'class="active"':'';
+							//根据C的值决定此项是否添加class="active"样式，也就是说当前这个分类的项是否是高亮显示
+							t += '<li '+c+'><a href="${pageContext.request.contextPath}/product.servlet?method=findByCategoryByPage&cid='+data[i].cid+'">'+data[i].cname+'</a></li>';
+							
+						}
+						//t = '<li>xxx</li><li>yyyy</li>'
+						//拼接出来的t字符串的内容，就是导航条ul标签的内容
+						$('#ul_nav').html( t );
+					},
+					'json'
+				);
+			});
+		</script>

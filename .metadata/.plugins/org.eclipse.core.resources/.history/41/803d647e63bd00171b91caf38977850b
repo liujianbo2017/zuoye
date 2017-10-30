@@ -1,0 +1,18 @@
+package cn.itcast.estore.web.servlet.admin;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+public class CategoryAdminServlet extends BaseServlet{
+
+	public String add(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+		
+		
+		return "null";
+	}
+}

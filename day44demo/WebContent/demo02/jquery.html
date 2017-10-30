@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script>
+	alert('页面加载');
+	
+	$(function(){
+		//给按钮绑定单机事件
+		$('#btn_test').click(function(){
+			//调用JQuery中的核心对象的get方法
+			$.get(
+				'/day44demo/testAjax.servlet',//提交的目标
+				'username=root&password=abc',//提交的参数
+				function(data){//回调函数,参数data就是响应内容
+					$('#show').html(data);
+				},
+				'text'//响应内容的类型
+			);
+		});
+		
+		//给按钮绑定单击事件
+		$('#btn_test_post').click(function(){
+			//调用JQuery中的核心对象的get方法
+			$.post(
+				'/day44demo/testAjax.servlet',//提交的目标
+				{username:'user001',password:'xyz'},//提交的参数JSON
+				function(data){//回调函数,参数data就是响应内容
+					$('#show').html(data);
+				},
+				'text'//响应内容的类型
+			);
+		});
+	});
+</script>
+</head>
+<body>
+
+	<marquee>当前页面的测试文字</marquee>
+	
+	<input type="button" value="测试发送的get方式的异步请求" id="btn_test" />
+	<input type="button" value="测试发送的post方式的异步请求" id="btn_test_post" />
+	
+	<div id="show" style="border:1px dotted blue;">
+		这是DIV的原始内容
+	</div>
+	
+</body>
+</html>

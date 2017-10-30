@@ -1,0 +1,21 @@
+package cn.itcast.estore.service.impl;
+
+import java.util.List;
+
+import cn.itcast.estore.domain.Product;
+
+public class ProductService implements cn.itcast.estore.service.ProductService {
+
+	@Override
+	public List<Product> findHots() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> findNews() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,45 @@
+package cn.itcast.estore.service.impl;
+
+import cn.itcast.estore.domain.User;
+import cn.itcast.estore.service.BaseService;
+import cn.itcast.estore.service.UserService;
+import cn.itcast.estore.utils.MailUtils;
+import cn.itcast.estore.utils.UUIDUtils;
+
+public class UserServiceImpl extends BaseService implements UserService{
+
+	@Override
+	public boolean regist(User user) {
+		boolean flag = false;
+		try {
+			//生成id
+			user.setUid(UUIDUtils.generateID());
+			//密码加密
+			user.setPassword(UUIDUtils.md5(user.getPassword()));
+			//设置用户状态为未激活
+			user.setState(User.STATE_UNACTIVE);
+			//生成激活码
+			user.setCode(UUIDUtils.generateCode());
+			//插入用户信息
+			userDao.insert(user);
+			//发送激活邮件
+			MailUtils.sendMail(
+					user.getEmail(),
+					"恭喜您注册传智播客商场成功,请激活用户", 
+					"尊敬的"+user.getName()+"您好:请点击以下文字激活用户:<br/><a href='http://localhost:8080/estore/user.servlet?method=active&code="+user.getCode()+"'>激活</a>"
+					);
+			flag = true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	@Override
+	public boolean active(String code) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

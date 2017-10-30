@@ -1,5 +1,0 @@
-package cn.itcast.day38.demo07.dao.impl;
-
-public interface ProductDao {
-
-}

@@ -1,0 +1,71 @@
+package cn.itcast.estore.service.impl;
+
+import java.util.List;
+
+import cn.itcast.estore.domain.Category;
+import cn.itcast.estore.domain.PaginationBean;
+import cn.itcast.estore.service.BaseService;
+import cn.itcast.estore.service.CategoryService;
+import cn.itcast.estore.utils.JedisUtils;
+import net.sf.json.JSONArray;
+import redis.clients.jedis.Jedis;
+
+public class CategoryServiceImpl extends BaseService implements CategoryService {
+
+	//取得所有的分类
+	@Override
+	public List<Category> findAll() {
+		List<Category> list = null;
+		try {
+			list = categoryDao.findAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	//取得所有的分类的JSON字符串
+	@Override
+	public String findAllJson() {
+		//从Redis中取得所有的分类的JSON
+		Jedis jedis = JedisUtils.getJedis();
+		
+		//所有分类的JSON字符串
+		String json = jedis.get("category_json");
+		
+		//判断是否为空(是否存在)
+		//如果不存在
+		if(json==null || "".equals(json.trim()) || "[]".equals(json)){
+			//则调用业务逻辑,从MYSQL中取得所有分类,并转发成JSON字符串,保存在jedis域中
+			List<Category> list;
+			try {
+				list = categoryDao.findAll();
+				json = JSONArray.fromObject(list).toString();
+				
+				//保存到Redis中
+				jedis.set("category_json", json);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		//关闭连接
+		jedis.close();
+		
+		return json;
+	}
+
+	//取得指定页的信息封装到PaginationBean中
+	@Override
+	public PaginationBean<Category> findByPage(int page, int rows) {
+		PaginationBean<Category> bean = new PaginationBean<Category>();
+		try{
+			bean.setRows(categoryDao.findByPage((page-1)*rows, rows));
+			bean.setTotal((int) categoryDao.getCount());
+		}catch(Exception e){}
+		
+		return bean;
+	}
+}

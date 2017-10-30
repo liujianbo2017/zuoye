@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>分类信息</title>
+</head>
+<body>
+
+	<table id="datagrid_category"></table>
+	<script>
+		$('#datagrid_catagory').datagrid({
+			toolbar:[{
+				text:'添加',
+				iconCls:'icon-add',//显示按钮左侧的样式
+				handler:function(){//编辑按钮
+					//弹出对话框,显示添加分类的表单
+					$('#dialog_add_category').dialog('open');//返回外部窗口对象
+				}
+			}],
+			fit:true,//自动适应屏幕大小
+			pagination:true,//显示分页工具栏
+			pageSize:5,
+			pageList:[5,10,15,20],//页面展示导航的页码
+			url:'category.servlet?method=findByPage',//因为Servlet的url-pattern也设置在了admin路径下，所以此处的相对路径不需要加路径名，直接写Servlet名就行了
+			columns:[[//列配置属性
+			          	{title:'分类名称',field:'cname'},
+			          	{title:'分类描述',field:'description'}//表示字段
+			          	{title:'操作',field:'operate',
+			          		formatter:function(value, row, index){//单元格formatter(格式化器)函数，带3个参数
+			          			//<a onclick="delete('1')"></a>
+			          			return '<a href="#" onclick="deleteCategory(\''+row.cid+'\')">删除</a>'
+			          			+'<a href="#" onclick="modifyCategory(\''+row.cid+'\')">修改</a>'
+			          		}
+			          	}
+		          ]]
+		});
+		
+		//当点击删除时,调用此函数,并传入要删除的分类的CID
+		function deleteCategory(cid){
+			//发送异步请求到服务器(CategoryAdminServlet.delete方法)
+			$.get(
+				'category.servlet',//访问的是/admin/category.servlet
+				{cid:cid,method:'delete'},
+				function(data){
+					$.messager.show({
+						title:'删除结果',
+						msg: data=='t'?'删除成功!':'删除失败!',//根据响应结果显示提示内容
+								Timeout:5000,
+								type:'slide'
+					});
+					//更新datagrid组件
+					$('#datagrid_category').datagrid('reload');
+				},
+				'text'
+			);
+		}
+	</script>
+	
+	<!--添加分类的对话框  -->
+	<div id="dialog_add_category"></div>
+</body>
+</html>

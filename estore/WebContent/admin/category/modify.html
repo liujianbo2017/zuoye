@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form id="form_modify_category" action="category.servlet" method="post">
+		<input type="hidden" name="method" value="modify"/>
+		<input type="hidden" id="ipt_cid" name="cid"/><!-- 为了实现CID的回填而设置的隐藏域，因为不需要给用户看到 -->
+		<div>
+			<label for="name">分类名称:</label>
+			<input class="easyui-textbox" type="text" name="cname" data-options="width:200" />
+		</div>
+		<div>
+			<label for="email">分类描述:</label>
+			<input class="easyui-textbox" type="text" name="description" data-options="multiline:true,width:200,height:100" />
+		</div>
+		<div style="text-align:center;">
+			<input type="submit" value="修改" />
+			<input type="reset" />
+		</div>
+	</form>
+	<script></script>
+</body>
+</html>

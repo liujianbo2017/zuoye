@@ -1,0 +1,17 @@
+package cn.itcast.estore.web.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+public class OrderServlet extends BaseServlet{
+
+	public String generate(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+
+		return "";
+	}
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 导入EasyUI -->
+	<link rel="stylesheet" href="../css/easyui.css" />
+	<link rel="stylesheet" href="../css/icon.css" />
+	<link rel="stylesheet" href="../css/demo.css" />
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<div id="tabs_test"></div>
+	
+	<script type="text/javascript">
+		//如果是样式设置宽度高度,数值后面要加px,
+		//如果是EasyUI的属性设置宽度高度,数值后面不加px是像素,也可以价%代表百分比
+		$('#tabs_test').tabs({
+			width:500,
+			height:400
+		});
+	</script>
+	
+	<input type="button" value="添加选项卡" onclick="add();" />
+</body>
+</html>
+<script>
+	function add(){
+		//得到当前选项卡的个数,如果达到最大,则不添加
+		var t = $('#tabs_test').tabs('tabs').length;
+		
+		if(t<=3){
+			//当点击按钮时,给选项卡组件添加一个新的选项卡
+			$('#tabs_test').tabs('add',{
+				title:'新选项卡',
+				selected:true,//当前被选中
+				closable:true,
+				content:'这是自定期的选项卡内容'
+			});
+		}
+	}
+</script>

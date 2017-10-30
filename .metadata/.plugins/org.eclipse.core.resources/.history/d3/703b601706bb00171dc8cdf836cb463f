@@ -1,0 +1,65 @@
+package cn.itcast.estore.web.servlet;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.constant.Constant;
+import cn.itcast.estore.domain.Cart;
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+public class CartServlet extends BaseServlet {
+	
+
+	public String goCartUI(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+		//转跳到购物车页面
+		return "/cart.jsp";
+	}
+
+	//将商品添加到购物车
+	public String add(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+	
+		//接受请求
+		String pid = req.getParameter("pid");
+		int count = 1;
+		try{
+			count = Integer.parseInt(req.getParameter("count"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		//调用业务逻辑,把商品加入购物车中
+		//从Session中取得当前购物车对象,如果为空,则业务逻辑方法负责创建购物车对象
+		Cart cart = (Cart) req.getSession().getAttribute( Constant.SESSION_CART );
+		cart = cartService.add(cart , pid , count);
+		
+		//把购物车保存回Session域中
+		req.getSession().setAttribute(Constant.SESSION_CART, cart);
+		//转跳页面,cart.jsp
+		return req.getContextPath()+"/cart.servlet?method=goCartUI";
+	}
+
+	//从购物车中删除商品
+	public String remove(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+		//接受请求,得到要删除商品的ID
+		String pid = req.getParameter("pid");
+		
+		//调用业务逻辑,从购物车中删除此商品
+		Cart cart = (Cart) req.getSession().getAttribute(Constant.SESSION_CART);
+		cartService.remove( cart, pid );
+		
+		//回转购物车页面
+		return req.getContextPath()+"/cart.servlet?method=goCartUI";
+	}
+	
+	public String clear(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+		//接受请求,得到商品
+		Map<String, String[]> map = req.getParameterMap();
+		//调用业务逻辑.请求购物车
+		cartService.clear(map);
+		//回转购物车页面
+		return req.getContextPath()+"/cart.servlet?method=goCartUI";
+	}
+}

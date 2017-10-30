@@ -1,0 +1,5 @@
+package cn.itcast.estore.dao;
+
+public class BaseService {
+
+}

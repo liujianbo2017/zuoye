@@ -1,0 +1,84 @@
+package cn.itcast.estore.service.impl;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import cn.itcast.estore.domain.Order;
+import cn.itcast.estore.domain.OrderItem;
+import cn.itcast.estore.service.BaseService;
+import cn.itcast.estore.service.OrderService;
+import cn.itcast.estore.utils.JdbcUtils;
+import cn.itcast.estore.utils.UUIDUtils;
+
+public class OrderServiceImpl extends BaseService implements OrderService {
+
+	/**
+	 * 生成订单的业务逻辑方法
+	 * 要生成一个订单,需要在数据库中插入一条订单数据,和N条订单项数据
+	 * 这些插入操作要么全成功,要么全失败,所以要开启事物
+	 */
+	@Override
+	public boolean generate(String uid, String[] pids, int[] counts) {
+		boolean flag = false;
+		//得到线程绑定的连接对象
+		Connection conn = JdbcUtils.getConnection();
+		try{
+			//封装Order对象
+			Order order = new Order();
+			//自己设置ID
+			order.setOid(UUIDUtils.generateID());
+			order.setState(Order.STATE_PAYED);//新建的订单,状态默认为未付款
+			order.setUid(uid);
+			
+			//封装OrderItem对象
+			//创建一个N个数组元素的订单项数组，N就是传入的PID的数量
+			OrderItem[] orderItems = new OrderItem[pids.length];
+			double total = 0;
+			for (int i = 0; i < pids.length; i++) {
+				OrderItem oi = new OrderItem();
+				oi.setOid(order.getOid());
+				oi.setPid(pids[i]);
+				oi.setCount(counts[i]);
+				//调用ProductDao根据ID取得商品，然后再用商品的单价乘以数量得到小计
+				oi.setSubtotal(productDao.get(pids[i]).getShop_price()*counts[i]);
+				
+				//把小计累加起来
+				total += oi.getSubtotal();
+				
+				//把本次循环创建的订单保存进数组中
+				orderItems[i] = oi;
+			}
+			//设置订单的总计
+			order.setTotal(total);
+			
+			//开启事物
+			conn.setAutoCommit(false);
+			
+			//调用Dao进行数据库操作
+			orderDao.inserOrder(order);
+			orderDao.insertOrderItem(orderItems);
+			
+			//提交事物
+			conn.commit();
+			flag = true;
+		}catch(Exception e){
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return flag;
+	}
+
+}

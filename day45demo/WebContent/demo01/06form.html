@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 导入EasyUI -->
+	<link rel="stylesheet" href="../css/easyui.css" />
+	<link rel="stylesheet" href="../css/icon.css" />
+	<link rel="stylesheet" href="../css/demo.css" />
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<marquee>正在执行当前页面</marquee>
+	
+	<form id="frm" method="post">
+		<input type="text" name="username" /><br/>
+		<input type="text" name="password" /><br/>
+		<input type="submit" />
+	</form>
+	<script type="text/javascript">
+		//普通的form标签,在变成EasyUI的form组件后,就变成了异步
+		$('#frm').form({
+			url:'/daydemo/test.servlet',//表单提交的目标,相当于action属性
+			success:function(data){//表单提交后响应成功接收后扫行的回调函数
+				alert(data);
+			}
+		});
+	</script>
+</body>
+</html>

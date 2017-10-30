@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理系统</title>
+	<!-- 导入EasyUI -->
+	<link rel="stylesheet" href="./css/easyui.css" />
+	<link rel="stylesheet" href="./css/icon.css" />
+	<link rel="stylesheet" href="./css/demo.css" />
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/jquery.easyui.min.js"></script>
+</head>
+<body class="easyui-layout">   
+    <div data-options="region:'north',split:true" style="height:100px;">
+    	<img src="./images/logo2.png">&nbsp;&nbsp;&nbsp;<font style="line-height: 100px; font-size:40px;">传智商城后台管理系统</font>
+    </div>   
+    <div data-options="region:'west',title:'West',split:true" style="width:100px;">
+    
+    </div>   
+    <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;">
+    
+    </div>   
+</body>  
+</html>

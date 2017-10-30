@@ -1,0 +1,7 @@
+package cn.itcast.estore.service.impl;
+
+import cn.itcast.estore.service.UserService;
+
+public class UserServiceImpl implements UserService {
+
+}

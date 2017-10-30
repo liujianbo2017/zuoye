@@ -54,7 +54,7 @@ public class CheckCodeServlet extends HttpServlet {
 		}
 		//把图片内容发回给浏览器（resp.getOutputStream()）
 		//使用ImageIO的工具类进行图片内容的发送
-		ImageIO.write(image, "jpeg", resp.getOutputStream() );
+		ImageIO.write(image, "gif", resp.getOutputStream() );
 
 	}
 

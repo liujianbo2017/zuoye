@@ -1,0 +1,16 @@
+package cn.itcast.estore.dao.impl;
+
+import java.util.List;
+
+import cn.itcast.estore.dao.CategoryDao;
+import cn.itcast.estore.domain.Category;
+
+public class CategoryDaoImpl implements CategoryDao {
+
+	@Override
+	public List<Category> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

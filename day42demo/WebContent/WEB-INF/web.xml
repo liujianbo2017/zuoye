@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <!--案列一 查询所有商品  -->
+
+  <!--案列 查询所有商品  -->
   <servlet>
   		<servlet-name>productServlet</servlet-name>
-  		<servlet-class>cn.itcast.day42.demo01.web.ProductListServlet</servlet-class>
+  		<servlet-class>cn.itcast.day42.demo01.web.servlet.ProductListServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   		<servlet-name>productServlet</servlet-name>
   		<url-pattern>/product.servlet</url-pattern>
   </servlet-mapping>
+  
+  <!--案列  添加商品  转跳页面Servlet  -->
+  <servlet>
+  		<servlet-name>productGoAddUI</servlet-name>
+  		<servlet-class>cn.itcast.day42.demo01.web.servlet.ProductGoAddUIServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>productGoAddUI</servlet-name>
+  		<url-pattern>/productGoAddUI.servlet</url-pattern>
+  </servlet-mapping>
+  
+   <!--案列  添加商品  -->
+  <servlet>
+  		<servlet-name>productAdd</servlet-name>
+  		
+  		<servlet-class>cn.itcast.day42.demo01.web.servlet.ProductAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>productAdd</servlet-name>
+  		<url-pattern>/productAdd.servlet</url-pattern>
+  </servlet-mapping>
+  
+  <!--案列  删除商品  -->
+  <servlet>
+  		<servlet-name>productDelete</servlet-name>
+  		
+  		<servlet-class>cn.itcast.day42.demo01.web.servlet.ProductDeleteServilet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>productDelete</servlet-name>
+  		<url-pattern>/productDelete.servlet</url-pattern>
+  </servlet-mapping>
+  
+   <!--案列 修改商品  转跳页面-->
+  <servlet>
+  		<servlet-name>productGoModifyUI</servlet-name>
+  		
+  		<servlet-class>cn.itcast.day42.demo01.web.servlet.ProductGoModifyUIServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>productGoModifyUI</servlet-name>
+  		<url-pattern>/productGoModifyUI.servlet</url-pattern>
+  </servlet-mapping>
+  
+  <!--案列 修改商品 -->
+  <servlet>
+  		<servlet-name>productModify</servlet-name>
+  		
+  		<servlet-class>cn.itcast.day42.demo01.web.servlet.ProductModifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>productModify</servlet-name>
+  		<url-pattern>/productModify.servlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!--过滤器 解决中文乱码问题  -->
+  <filter>
+  		<filter-name>encondingFilter</filter-name>
+  		<filter-class>cn.itcast.day42.demo01.web.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  		<filter-name>encondingFilter</filter-name>
+  		<url-pattern>*.servlet</url-pattern>
+  </filter-mapping>
 </web-app>

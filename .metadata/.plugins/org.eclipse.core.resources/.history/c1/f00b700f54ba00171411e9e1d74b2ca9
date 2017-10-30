@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>estore</display-name>
+	 <!--默认访问主页  -->
+    <welcome-file-list>
+	   <welcome-file>user.servlet</welcome-file>
+	</welcome-file-list>
+
+	<!-- 用户相关操作的Servlet -->
+	<servlet>
+		<servlet-name>user</servlet-name>
+		<servlet-class>cn.itcast.estore.web.servlet.UserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>user</servlet-name>
+		<url-pattern>/user.servlet</url-pattern>	
+	</servlet-mapping>
+	
+	<!-- 根据pid显示商品的详细信息的Servlet -->
+	<servlet>
+		<servlet-name>product</servlet-name>
+		<servlet-class>cn.itcast.estore.web.servlet.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>product</servlet-name>
+		<url-pattern>/product.servlet</url-pattern>	
+	</servlet-mapping>
+
+	<!-- 解决中文乱码问题的过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>cn.itcast.estore.web.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.servlet</url-pattern>
+	</filter-mapping>
+  
+</web-app>

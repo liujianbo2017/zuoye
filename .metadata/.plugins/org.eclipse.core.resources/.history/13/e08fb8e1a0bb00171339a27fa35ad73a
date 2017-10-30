@@ -1,0 +1,11 @@
+package cn.itcast.day52.demo03.impl;
+
+public class UserDaoImpl3 implements UserDao {
+
+	@Override
+	public void insert() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

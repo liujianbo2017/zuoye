@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- 导入EasyUI -->
+	<link rel="stylesheet" href="../css/easyui.css" />
+	<link rel="stylesheet" href="../css/icon.css" />
+	<link rel="stylesheet" href="../css/demo.css" />
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<input type="button" value="test" onclick="openDialog();" />
+	
+	<div id="dd"></div>
+	<script type="text/javascript">
+		$('#dd').dialog({
+			title:'测试对话框',
+			width:200,
+			height:180,
+			closed:true,
+			closable:true,
+			modal:true,
+			content:'这是对话框中的内容'
+		});
+		//CSS中的滤镜,filter.可以设置标签的透明度
+	</script>
+</body>
+</html>
+<script>
+	function openDialog(){
+		$('#dd').dislog('open');
+	}
+</script>

@@ -1,5 +1,0 @@
-package cn.itcast.day40.demo02.utils;
-
-public class JdbcUtils {
-
-}

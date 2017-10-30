@@ -1,4 +1,3 @@
 #Tomcat publish data
-#Wed Oct 11 21:54:36 CST 2017
-org.eclipse.jst.jee.server\:day39demo=D\:\\tomcat\\apache-tomcat-7.0.52\\webapps\\day39demo
-org.eclipse.jst.jee.server\:day42demo=D\:\\tomcat\\apache-tomcat-7.0.52\\webapps\\day42demo
+#Mon Oct 30 23:21:39 CST 2017
+org.eclipse.jst.jee.server\:estore=D\:\\tomcat\\apache-tomcat-7.0.52\\webapps\\estore

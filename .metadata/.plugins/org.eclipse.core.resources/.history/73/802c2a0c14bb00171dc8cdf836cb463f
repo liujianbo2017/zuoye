@@ -1,0 +1,10 @@
+package cn.itcast.estore.dao;
+
+import cn.itcast.estore.domain.Order;
+
+public interface OrderDao {
+
+	void inserOrder(Order order) throws Exception;
+	
+	void insertOrderItem(OrderItem[] orderItems) throws Exception;
+}

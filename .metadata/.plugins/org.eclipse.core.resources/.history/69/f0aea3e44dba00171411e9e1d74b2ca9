@@ -1,0 +1,27 @@
+package cn.itcast.estore.utils;
+
+import java.io.IOException;
+
+import com.sun.xml.internal.fastinfoset.sax.Properties;
+
+import redis.clients.jedis.JedisPool;
+
+public class JedisUtils {
+
+	//持有连接池对象
+	private static JedisPool pool;
+	
+	static{
+		//读取自定义的配置文件
+		Properties prpo = new Properties();
+		try{
+			prpo.load(JedisUtils.class.getClassLoader().getResourceAsStream("jedis.properties"));
+		}catch(IOException el){
+			el.printStackTrace();
+		}
+		int maxTotal = 10;
+		int maxTdle = 5;
+		int port = 6379;
+		
+	}
+}

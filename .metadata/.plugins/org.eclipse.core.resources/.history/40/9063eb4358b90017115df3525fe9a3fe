@@ -1,0 +1,29 @@
+package cn.itcast.estore.service.impl;
+
+import cn.itcast.estore.service.BaseService;
+import cn.itcast.estore.service.UserService;
+import cn.itcast.estore.utils.User;
+
+public class UserServiceImpl extends BaseService implements UserService{
+
+	@Override
+	public boolean regist(User user) {
+		boolean flag = false;
+		try {
+			//插入id
+			UUIDUtils.
+			userDao.insert(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	@Override
+	public boolean active(String code) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

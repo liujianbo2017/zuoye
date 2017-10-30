@@ -1,7 +1,0 @@
-package cn.itcast.day41.demo02;
-
-import javax.servlet.http.HttpServlet;
-
-public class TestSessionServlet extends HttpServlet {
-
-}

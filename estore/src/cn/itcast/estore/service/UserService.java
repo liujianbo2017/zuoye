@@ -1,0 +1,12 @@
+package cn.itcast.estore.service;
+
+import cn.itcast.estore.domain.User;
+
+public interface UserService {
+
+	boolean regist(User user);
+	
+	boolean active(String code);
+	
+	User login(String username, String password);
+}

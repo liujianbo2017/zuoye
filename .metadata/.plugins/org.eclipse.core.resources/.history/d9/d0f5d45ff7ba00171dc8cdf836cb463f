@@ -1,0 +1,13 @@
+package cn.itcast.estore.service.impl;
+
+import cn.itcast.estore.domain.Cart;
+
+public class CartService implements cn.itcast.estore.service.CartService {
+
+	@Override
+	public Cart add(Cart cart, String pid, int count) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

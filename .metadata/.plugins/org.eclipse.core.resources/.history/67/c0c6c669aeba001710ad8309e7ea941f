@@ -1,0 +1,28 @@
+package cn.itcast.estore.web.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+
+public class CategoryServlet extends BaseServlet{
+
+	//取得所有分类，并发送所有分类集合的JSON字符串给浏览器的异步方法（不能转跳页面）
+	public String findAll(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+	
+		//调用业务逻辑从Redis中取得所有分类额JSON字符串
+		String json = categoryService.findAllJson();
+		req.setCharacterEncoding("UTF-8");
+		//如果已存在则发回给浏览器
+		resp.getWriter().write(json);
+		
+		System.out.println(json);
+		
+		//不跳转页面
+		return null;
+		
+	}
+}

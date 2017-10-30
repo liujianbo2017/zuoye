@@ -1,0 +1,4 @@
+host = 192.168.72.250
+port = 6379
+maxTotal = 5
+maxIdle = 3

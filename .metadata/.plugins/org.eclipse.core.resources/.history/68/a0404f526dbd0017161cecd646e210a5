@@ -1,0 +1,40 @@
+package cn.itcast.estore.web.servlet.admin;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.estore.domain.Category;
+import cn.itcast.estore.domain.PaginationBean;
+import cn.itcast.estore.web.servlet.base.BaseServlet;
+import net.sf.json.JSONObject;
+
+public class CategoryAdminServlet extends BaseServlet{
+
+	
+	//取得指定页的分类信息(封装成PaginationBean并转换成JSON发回给浏览器)
+	public String findByPage(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
+		//接受请求,得到页号,页大小
+		int page = 1, rows = 5;
+		try{
+			page = Integer.parseInt(req.getParameter("page"));
+		}catch(Exception e){}
+		try{
+			rows = Integer.parseInt(req.getParameter("rows"));
+		}catch(Exception e){}
+		
+		//调用业务逻辑,得到指定页的分类数据PaginationBean<Category>
+		PaginationBean<Category> bean = categoryService.findByPage(page, rows);
+		
+		//转换成JSON字符串
+		String json = JSONObject.fromObject(bean).toString();
+		System.out.println(json+"11");
+		//发回给浏览器
+		resp.getWriter().write(json);
+		
+		//因为是服务于异步请求的方法,所以不能转跳页面
+		return "null";
+	}
+}

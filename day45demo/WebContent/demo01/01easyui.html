@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+<!-- 导入EasyUI -->
+	<link rel="stylesheet" href="../css/easyui.css" />
+	<link rel="stylesheet" href="../css/icon.css" />
+	<link rel="stylesheet" href="../css/demo.css" />
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<!-- 第一种使用方式: 纯静态标签 -->
+	<a id="btn1" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',toggle:true">easyui</a>  
+	<script type="text/javascript">
+		// EasyUI中给组件绑定事件处理函数的方式,注意: 事件名是EasyUI中定义的,和JS事件名无关
+		$('#btn1').linkbutton({
+			onClick:function(){
+				alert('hello!');
+			}
+		});
+	</script>
+	
+	<hr/>
+	
+	<!-- 第二种命名用方式: 标签+脚本 -->
+	<a id="btn2" href="#">这是脚本生成的按钮</a>
+	<script type="text/javascript">
+		/*
+			用JQuery的选择器得到标签对象,然后调用组件名方法
+			(相当于是把这个标签变成了组件,相当于就是给标签加了class="easyui-linkbutton"样式)
+			方法中传入的一个个JSON,这个JSON中设置的就是EasyUI自定义的组件属性,
+			相当于是在设置组价的data-options属性
+		*/
+		$('#btn').linkbutton({    
+		    iconCls: 'icon-add',
+		    toggle:true,
+		    size:'large'
+		});  
+		
+	</script>
+	
+	<input type="button" value="测试调用EasyUI组件的方法" onclick="testFunc();" />
+</body>
+</html>
+<script>
+	//当点击普通按钮时,调用此函数,用来测试调用EasyUI的组件的方法
+	function testFunc(){
+		//在EasyUI中调用组件方法时,不是调用方法名,惹事调用组件名方法,然后
+		//在方法中传入要调用的方法名
+		//如果此方法有参数,就在方法名后面继续传入
+		$('#btn2').linkbutton('resize' , { width: 300, height:100 } );
+	}
+</script>

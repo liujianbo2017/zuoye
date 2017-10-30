@@ -1,0 +1,11 @@
+package cn.itcast.day52.demo02;
+
+public class BronzeAxe implements Axe {
+
+	@Override
+	public void chopTree() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

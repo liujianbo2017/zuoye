@@ -1,0 +1,33 @@
+package cn.itcast.estore.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import cn.itcast.estore.dao.ProductDao;
+import cn.itcast.estore.domain.Product;
+import cn.itcast.estore.utils.JdbcUtils;
+
+public class ProductDaoImpl implements ProductDao {
+
+	private static final String FIELDS = " pid,pname,shop_price,market_price,pimage,pdate,is_hot,pflag,pdesc,cid ";
+	@Override
+	public List<Product> findHots() throws Exception {
+		QueryRunner runner = new QueryRunner( JdbcUtils.getDataSource() );
+		String sql = "select "+FIELDS+" from tb_product where is_hot=1 limit 0,9";
+		List<Product> list = runner.query(sql, new BeanListHandler<Product>(Product.class));
+		
+		return list;
+	}
+
+	@Override
+	public List<Product> findNews() throws Exception {
+		QueryRunner runner = new QueryRunner( JdbcUtils.getDataSource() );
+		String sql = "select "+FIELDS+" from tb_product where order by pdate desc limit 0,9";
+		List<Product> list = runner.query(sql, new BeanListHandler<Product>(Product.class));
+		
+		return list;
+	}
+
+}

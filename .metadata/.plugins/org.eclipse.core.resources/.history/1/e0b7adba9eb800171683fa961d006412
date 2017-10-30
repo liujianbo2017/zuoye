@@ -1,0 +1,5 @@
+package cn.itcast.demo01.web.servlet.base;
+
+public class BaseServlet {
+
+}

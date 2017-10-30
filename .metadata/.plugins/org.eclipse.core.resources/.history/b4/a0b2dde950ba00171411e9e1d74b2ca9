@@ -1,0 +1,21 @@
+package cn.itcast.estore.service;
+
+import java.util.List;
+
+import cn.itcast.estore.domain.Category;
+
+public class CategoryServiceImpl implements CategoryService {
+
+	@Override
+	public List<Category> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String findAllJson() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

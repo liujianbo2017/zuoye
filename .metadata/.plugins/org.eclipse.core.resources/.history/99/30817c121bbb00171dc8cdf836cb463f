@@ -1,0 +1,13 @@
+package cn.itcast.estore.service.impl;
+
+import cn.itcast.estore.service.OrderService;
+
+public class OrderServiceImpl implements OrderService {
+
+	@Override
+	public boolean generate(String uid, String[] pids, int[] counts) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,20 @@
+package cn.itcast.estore.service.impl;
+
+import cn.itcast.estore.service.UserService;
+import cn.itcast.estore.utils.User;
+
+public class UserServiceImpl implements UserService extends BaseService{
+
+	@Override
+	public boolean regist(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean active(String code) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

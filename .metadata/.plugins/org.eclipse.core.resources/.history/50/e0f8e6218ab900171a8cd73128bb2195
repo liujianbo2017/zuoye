@@ -1,0 +1,58 @@
+package cn.itcast.demo01.web.servlet.base;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.demo01.service.ProductService;
+import cn.itcast.demo01.service.impl.ProductServiceImpl;
+
+//所有Servlet的基类,持有所有的Service,进行动态的方法分发,减少Servlet的数据,让一个Servlet可以处理多种请求
+public class BaseServlet extends HttpServlet{
+
+	protected ProductService productService = new ProductServiceImpl();
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//由页面提供的方法名,当用户提交一个请求的时候,用户除了要提交的参数外,还要提交method,值为要分发的方法名
+		String methodName = req.getParameter("method");
+		
+		if(methodName==null || "".equals(methodName)){
+			//如果要提交的方法名为空,则执行默认方法为execute\
+			methodName = "execute";
+		}
+		//使用放射机制,得到提交的同名方法对象,调用该方法
+		//因为要得到的方法属于子类,本类是父类,实际运行时,当前对象this就是本类对象
+		Class clazz = this.getClass();
+		
+		try {
+			//得到的提交的方法名所对应的方法对象
+			Method method = clazz.getMethod(methodName, HttpServletRequest.class,HttpServletResponse.class);
+			//调用指定的方法,返回要跳转页面的路径(如果需要内部转发,则此路径不是以项目名开头,如果是重定向,则此路径是以项目名开头)
+			String path = (String) method.invoke(this, req,resp);
+			if(path.startsWith(req.getContextPath())){
+				//以项目名开头,使用重定向
+				resp.sendRedirect(path);
+			}else{
+				//不是以项目名开头
+				req.getRequestDispatcher(path).forward(req, resp);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	public String execute(HttpServletRequest req,HttpServletResponse resp) throws Exception{
+		//默认返回首页
+		return "";
+	}
+
+}

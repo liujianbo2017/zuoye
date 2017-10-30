@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean ID="userDao1" class="cn.itcast.day52.demo03.impl.UserDaoImpl1" />
+	<bean ID="userDao2" class="cn.itcast.day52.demo03.impl.UserDaoImpl2" />
+	<bean ID="userDao3" class="cn.itcast.day52.demo03.impl.UserDaoImpl3" />
+</beans>
